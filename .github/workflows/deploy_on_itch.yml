@@ -77,7 +77,7 @@ jobs:
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: html5
-          ITCH_GAME: template #Set page name from itch
+          ITCH_GAME: ld58 #Set page name from itch
           ITCH_USER: noagard #Set itch user name
           PACKAGE: build/WebGL
       - name: Cleanup to avoid storage limit
