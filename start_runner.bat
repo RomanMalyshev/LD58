@@ -12,6 +12,6 @@ if errorlevel 1 (
 )
 
 REM 3. Запускаем раннер под пользователем ld58
-wsl -d Ubuntu-22.04 -u template --cd /home/ld58/actions-runner ./run.sh
+wsl -d Ubuntu-22.04 -u ld58 --cd /home/ld58/actions-runner ./run.sh
 
 pause
