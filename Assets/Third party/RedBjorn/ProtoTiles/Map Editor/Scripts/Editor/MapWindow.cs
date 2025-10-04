@@ -1,9 +1,11 @@
 ﻿using RedBjorn.Utils;
 using System;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using View.Map;
 
 namespace RedBjorn.ProtoTiles
 {
@@ -391,6 +393,7 @@ namespace RedBjorn.ProtoTiles
                     var presetProperty = presetsProperty.GetArrayElementAtIndex(i);
                     var tagsProperty = presetProperty.FindPropertyRelative(nameof(TilePreset.Tags));
                     var prefabsProperty = presetProperty.FindPropertyRelative(nameof(TilePreset.Prefabs));
+                    var tileTypeProperty = presetProperty.FindPropertyRelative(nameof(TilePreset.TileType));
                     var isPresetSelected = TilePresetCurrent == i;
                     EditorGUIUtility.labelWidth = TileLabelWidth;
 
@@ -400,6 +403,7 @@ namespace RedBjorn.ProtoTiles
 
                     EditorGUILayout.Space();
                     EditorGUILayout.PropertyField(presetProperty.FindPropertyRelative(nameof(TilePreset.Type)), new GUIContent("Name"), true);
+                    EditorGUILayout.PropertyField(presetProperty.FindPropertyRelative(nameof(TilePreset.TileType)), new GUIContent("Type Tile"), true);
                     EditorGUILayout.LabelField("Prefabs");
                     EditorGUIUtility.labelWidth = 22f;
                     var elementWidth = 134f;
@@ -663,6 +667,9 @@ namespace RedBjorn.ProtoTiles
                     {
 #if UNITY_EDITOR
                         var tileGo = PrefabUtility.InstantiatePrefab(prefab, parent.transform) as GameObject;
+                 
+                        holder.Tiles[tile.TilePos] = tileGo.GetOrAddComponent<TileView>();
+                        holder.Tiles[tile.TilePos].SetPosition(tile.TilePos);
                         tileGo.transform.localRotation = Quaternion.Inverse(parent.transform.rotation);
                         tileGo.transform.position = Map.ToWorld(tile.TilePos, Map.Edge);
                         Undo.RegisterCreatedObjectUndo(tileGo, "Create MapView");

@@ -1,10 +1,23 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
+using View.Map;
 
 namespace RedBjorn.ProtoTiles
 {
     public class MapView : MonoBehaviour
     {
         GameObject Grid;
+        public Dictionary<Vector3Int, TileView> Tiles = new ();
+
+        public void Awake()
+        {
+            var tiles = GetComponentsInChildren<TileView>();
+            foreach (var tile in tiles)
+            {
+                Tiles[tile.GetTilePosition()] = tile;
+            }
+        }
 
         public void Init(MapEntity map)
         {

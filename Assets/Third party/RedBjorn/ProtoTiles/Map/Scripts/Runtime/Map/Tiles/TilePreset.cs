@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 
 namespace RedBjorn.ProtoTiles
@@ -14,7 +15,8 @@ namespace RedBjorn.ProtoTiles
         public float GridOffset;
         public List<TileTag> Tags = new List<TileTag>();
         public List<GameObject> Prefabs = new List<GameObject>();
-
+        
+        public TileType TileType;
         public GameObject PrefabCurrent => Prefabs == null || Prefabs.Count == 0 ? null : Prefabs[0];
 
         public bool Validate()

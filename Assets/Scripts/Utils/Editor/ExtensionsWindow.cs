@@ -4,51 +4,54 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ExtensionsWindow : EditorWindow
+namespace Utils.Editor
 {
-    [MenuItem("Tools/Scene Tools")]
-    public static void ShowWindow()
+    public class ExtensionsWindow : EditorWindow
     {
-        var window = GetWindow<ExtensionsWindow>();
-        window.titleContent = new GUIContent("Scene Tools");
-        window.Show();
-    }
-    
-    
-    private bool isDomainReloadDisabled => EditorApplication.isCompiling;
-    private bool isSceneReloadDisabled => !EditorApplication.isPlaying;
-
-    private void OnGUI()
-    {
-        Disableable(DomainReloadButton, isDomainReloadDisabled);
-        Disableable(SceneReloadButton, isSceneReloadDisabled);
-    }
-
-    private void DomainReloadButton()
-    {
-        if (GUILayout.Button("Reload Domain"))
+        [MenuItem("Tools/Scene Tools")]
+        public static void ShowWindow()
         {
-            EditorUtility.RequestScriptReload();
+            var window = GetWindow<ExtensionsWindow>();
+            window.titleContent = new GUIContent("Scene Tools");
+            window.Show();
         }
-    }
+    
+    
+        private bool isDomainReloadDisabled => EditorApplication.isCompiling;
+        private bool isSceneReloadDisabled => !EditorApplication.isPlaying;
 
-    private void SceneReloadButton()
-    {
-        if (GUILayout.Button("Reload Scene"))
+        private void OnGUI()
         {
-            var scene = SceneManager.GetActiveScene();
-            if (scene != null)
+            Disableable(DomainReloadButton, isDomainReloadDisabled);
+            Disableable(SceneReloadButton, isSceneReloadDisabled);
+        }
+
+        private void DomainReloadButton()
+        {
+            if (GUILayout.Button("Reload Domain"))
             {
-                var opts = new LoadSceneParameters { };
-                EditorSceneManager.LoadSceneInPlayMode(scene.path, opts);
+                EditorUtility.RequestScriptReload();
             }
         }
-    }
 
-    private void Disableable(Action renderer, bool disabled)
-    {
-        EditorGUI.BeginDisabledGroup(disabled);
-        renderer();
-        EditorGUI.EndDisabledGroup();
+        private void SceneReloadButton()
+        {
+            if (GUILayout.Button("Reload Scene"))
+            {
+                var scene = SceneManager.GetActiveScene();
+                if (scene != null)
+                {
+                    var opts = new LoadSceneParameters { };
+                    EditorSceneManager.LoadSceneInPlayMode(scene.path, opts);
+                }
+            }
+        }
+
+        private void Disableable(Action renderer, bool disabled)
+        {
+            EditorGUI.BeginDisabledGroup(disabled);
+            renderer();
+            EditorGUI.EndDisabledGroup();
+        }
     }
 }
