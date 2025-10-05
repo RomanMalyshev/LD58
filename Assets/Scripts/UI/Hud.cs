@@ -30,6 +30,16 @@ namespace UI
             PopupDecline.onClick.AddListener(() => OnPopupDecline?.Invoke());
         }
 
+        public void UpdateResources(int influence, int power, int food, int gold, int metal, int wood)
+        {
+            Influence.text = influence.ToString();
+            Power.text = power.ToString();
+            Food.text = food.ToString();
+            Wood.text = wood.ToString();
+            Iron.text = metal.ToString();
+            Gold.text = gold.ToString();
+        }
+
         public void ShowPopup(string message, string accept, string decline)
         {
             Popup.gameObject.SetActive(true);

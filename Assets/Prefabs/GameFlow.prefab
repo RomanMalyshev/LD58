@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae08be6ca63147a5b085419851f245f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameFlow
-  _mapEntity:
-    VerticesInner: []
-  _mapView: {fileID: 0}
+  _mapEditorSettings: {fileID: 0}
+  _mapEditorView: {fileID: 0}
+  _hud: {fileID: 0}
+  _playerStartConfig: {fileID: 11400000, guid: 3f548284a8a05f8448f62b0433fcef49, type: 2}

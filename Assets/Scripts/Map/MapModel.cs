@@ -7,7 +7,6 @@ namespace Model.Map
     public class MapModel
     {
         public Dictionary<Vector2Int, ITile> Tiles { get;  } = new();
-
         public event Action<Vector2Int, bool> OnTileOccupiedChanged;
         public event Action<Vector2Int, bool> OnTileReadyToOccupyChanged;
 
@@ -40,6 +39,7 @@ namespace Model.Map
                 UpdateReadyToOccupyStates();
             }
         }
+        
 
         private void UpdateReadyToOccupyStates()
         {
