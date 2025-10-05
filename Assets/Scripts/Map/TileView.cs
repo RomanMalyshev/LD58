@@ -28,6 +28,7 @@ namespace View.Map
             _mouseTrigger.OnClicked += OnMouseDown;
             _mouseTrigger.OnHoverEnter += OnMouseEnter;
             _mouseTrigger.OnHoverExit += OnMouseExit;
+            _spriteRenderer.sortingOrder = 20 - _tilePosition.y;
         }
 
         public void SetPosition(Vector3Int tilePos)
