@@ -1,4 +1,6 @@
-﻿namespace State_Machine
+﻿using UnityEngine;
+
+namespace State_Machine
 {
     public class StateMachine
     {
@@ -11,6 +13,8 @@
             _currentState?.Exit();
             _currentState = newState;
             _currentState?.Enter();
+            
+            Debug.Log($"Current state is {_currentState}");
         }
 
         public void Execute()

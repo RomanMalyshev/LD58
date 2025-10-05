@@ -14,20 +14,22 @@ public class GameFlow : MonoBehaviour
     [SerializeField] private RedBjorn.ProtoTiles.MapView _mapEditorView;
     [SerializeField] private Hud _hud;
     [SerializeField] private PlayerStartConfig _playerStartConfig;
-    
+
     private StateMachine _stateMachine;
+    private EnterGame _enterGame;
     private StartTurn _startTurn;
     private RandomEvent _randomEvent;
     private ResourcesUpdate _resourcesUpdate;
     private PlayerTurn _playerTurn;
     private EndTurn _endTurn;
+    private TransitionState _transitionState;
 
     private Player _playerModel;
 
     private MapModel _mapModel;
     private MapPresenter _mapPresenter;
     private MapView _mapView;
-    
+
     private void Start()
     {
         InitializePlayer();
@@ -37,13 +39,14 @@ public class GameFlow : MonoBehaviour
         _mapPresenter = new MapPresenter(_mapModel, _mapView);
 
         InitializeStateMachine();
-        _stateMachine.ChangeState(_playerTurn);
+        _stateMachine.ChangeState(_enterGame);
     }
 
     private void InitializePlayer()
     {
         _playerModel = new Player();
         _playerModel.OnResourcesChanged += _hud.UpdateResources;
+        
         _playerModel.Influence = _playerStartConfig.Influence;
         _playerModel.Power = _playerStartConfig.Power;
         _playerModel.Food = _playerStartConfig.Food;
@@ -51,7 +54,7 @@ public class GameFlow : MonoBehaviour
         _playerModel.Metal = _playerStartConfig.Metal;
         _playerModel.Wood = _playerStartConfig.Wood;
     }
-    
+
     private void Update()
     {
         _stateMachine.Execute();
@@ -60,45 +63,18 @@ public class GameFlow : MonoBehaviour
     private void InitializeStateMachine()
     {
         _stateMachine = new StateMachine();
-        _startTurn = new StartTurn();
+        _enterGame = new EnterGame(_hud, _mapModel, _mapView);
         _randomEvent = new RandomEvent();
-        _resourcesUpdate = new ResourcesUpdate();
+        _startTurn = new StartTurn();
         _playerTurn = new PlayerTurn(_mapModel);
         _endTurn = new EndTurn();
-    }
-
-    public void TransitionToRandomEvent()
-    {
-        _stateMachine.ChangeState(_randomEvent);
-    }
-
-    public void TransitionToResourcesUpdate()
-    {
-        _stateMachine.ChangeState(_resourcesUpdate);
-    }
-
-    public void TransitionToPlayerTurn()
-    {
-        _stateMachine.ChangeState(_playerTurn);
-    }
-
-    public void TransitionToEndTurn()
-    {
-        _stateMachine.ChangeState(_endTurn);
-    }
-
-    public void TransitionToStartTurn()
-    {
-        _stateMachine.ChangeState(_startTurn);
+        _resourcesUpdate = new ResourcesUpdate();
+        _transitionState = new TransitionState();
     }
 
     private void OnDestroy()
     {
-        if (_playerModel != null)
-        {
-            _playerModel.OnResourcesChanged -= _hud.UpdateResources;
-        }
-        
+        _playerModel.OnResourcesChanged -= _hud.UpdateResources;
         _mapPresenter.Cleanup();
     }
 }

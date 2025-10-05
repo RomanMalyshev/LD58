@@ -57,5 +57,37 @@ namespace View.Map
                 _tileViews[coords].SetReadyToOccupyVisual(isReadyToOccupy);
             }
         }
+
+        public void SetTilesInteractable(bool interactable)
+        {
+            foreach (var tileView in _tileViews.Values)
+            {
+                tileView.SetInteractable(interactable);
+            }
+        }
+
+        public void HighlightTile(Vector2Int coords, Color color)
+        {
+            if (_tileViews.ContainsKey(coords))
+            {
+                _tileViews[coords].SetColor(color);
+            }
+        }
+
+        public void ClearTileHighlight(Vector2Int coords)
+        {
+            if (_tileViews.ContainsKey(coords))
+            {
+                _tileViews[coords].ResetColor();
+            }
+        }
+
+        public void ClearAllHighlights()
+        {
+            foreach (var tileView in _tileViews.Values)
+            {
+                tileView.ResetColor();
+            }
+        }
     }
 }
