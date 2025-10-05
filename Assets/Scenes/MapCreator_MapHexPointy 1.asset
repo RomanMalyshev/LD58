@@ -1,0 +1,138 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6d32a2a8ca144a4396103e2a46a24f3, type: 3}
+  m_Name: MapCreator_MapHexPointy 1
+  m_EditorClassIdentifier: Assembly-CSharp::RedBjorn.ProtoTiles.MapSettings
+  Type: 2
+  Axis: 1
+  RotationType: 1
+  Edge: 1
+  MapMask:
+    serializedVersion: 2
+    m_Bits: 0
+  BorderSize: 0.025
+  CellMaterial: {fileID: 2100000, guid: 48097669abeecd047ac9c7d0c9302e74, type: 2}
+  Rules:
+    IsMovable: {fileID: 11400000, guid: ce303506d48d89d44abd552e9c465edb, type: 2}
+  Presets:
+  - Type: Ground
+    Id: 85a0de64a2806fe4783a298698b87027
+    MapColor: {r: 1, g: 1, b: 1, a: 0.5}
+    Prefab: {fileID: 0}
+    GridOffset: 0
+    Tags: []
+    Prefabs:
+    - {fileID: 8335891982828581854, guid: 7227d7ac588109f42b3925e2b7138e67, type: 3}
+    TileType: 3
+  - Type: Ground
+    Id: ee4687d3c707d1e48a32cf4ac14b300f
+    MapColor: {r: 1, g: 1, b: 1, a: 0.5}
+    Prefab: {fileID: 0}
+    GridOffset: 0
+    Tags: []
+    Prefabs:
+    - {fileID: 8335891982828581854, guid: 8e943a3003fdb414f8c82462a6fe559d, type: 3}
+    TileType: 1
+  - Type: Ground
+    Id: 5767a97cf8191324c9582155eed92720
+    MapColor: {r: 1, g: 1, b: 1, a: 0.5}
+    Prefab: {fileID: 0}
+    GridOffset: 0
+    Tags: []
+    Prefabs:
+    - {fileID: 8335891982828581854, guid: e28c2ba315e1918469cd74d065d30fd8, type: 3}
+    TileType: 2
+  - Type: Ground
+    Id: 78d8c911b167db544a68a8437d40c41a
+    MapColor: {r: 1, g: 1, b: 1, a: 0.5}
+    Prefab: {fileID: 0}
+    GridOffset: 0
+    Tags: []
+    Prefabs:
+    - {fileID: 8335891982828581854, guid: 0f1c0abebfcb2864aad45e09557b608c, type: 3}
+    TileType: 4
+  - Type: Ground
+    Id: 88a7ddf1967e8704cb0176ca36dd1c0a
+    MapColor: {r: 1, g: 1, b: 1, a: 0.5}
+    Prefab: {fileID: 0}
+    GridOffset: 0
+    Tags: []
+    Prefabs:
+    - {fileID: 8335891982828581854, guid: 79cb35522f9844344bb690ac8abfbd46, type: 3}
+    TileType: 0
+  Tiles:
+  - TilePos: {x: 0, y: 0, z: 0}
+    Id: 78d8c911b167db544a68a8437d40c41a
+    PrefabIndex: 0
+    MovableArea: 1
+    SideHeight:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+  - TilePos: {x: 0, y: -1, z: 1}
+    Id: 88a7ddf1967e8704cb0176ca36dd1c0a
+    PrefabIndex: 0
+    MovableArea: 1
+    SideHeight:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+  - TilePos: {x: 2, y: -2, z: 0}
+    Id: ee4687d3c707d1e48a32cf4ac14b300f
+    PrefabIndex: 0
+    MovableArea: 1
+    SideHeight:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+  - TilePos: {x: 0, y: -2, z: 2}
+    Id: 5767a97cf8191324c9582155eed92720
+    PrefabIndex: 0
+    MovableArea: 1
+    SideHeight:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+  - TilePos: {x: 1, y: -1, z: 0}
+    Id: 88a7ddf1967e8704cb0176ca36dd1c0a
+    PrefabIndex: 0
+    MovableArea: 1
+    SideHeight:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+  - TilePos: {x: 1, y: -2, z: 1}
+    Id: 85a0de64a2806fe4783a298698b87027
+    PrefabIndex: 0
+    MovableArea: 1
+    SideHeight:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
