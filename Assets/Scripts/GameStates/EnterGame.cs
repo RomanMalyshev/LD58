@@ -1,34 +1,39 @@
-﻿using Model.Map;
+﻿using System;
 using State_Machine;
 using UI;
-using UnityEngine;
-using View.Map;
+using Map;
 
 namespace GameStates
 {
     public class EnterGame : IState
     {
+        public Action OnPlayerStartGame;
+        
         private Hud _hud;
-        private MapModel _mapModel;
-        private MapView _mapView;
+        private MapController _map;
 
-        public EnterGame(Hud hud, MapModel mapModel, MapView mapView)
+        public EnterGame(Hud hud, MapController map)
         {
             _hud = hud;
-            _mapModel = mapModel;
-            _mapView = mapView;
+            _map = map;
         }
 
         public void Enter()
         {
-            _mapView.SetTilesInteractable(false);
-            _mapView.HighlightTile(Vector2Int.zero, Color.green);
+            string welcomeMessage = "Welcome, my Lord!\n\n";
+            welcomeMessage += "The time has come to expand our kingdom. ";
+            welcomeMessage += "We must collect the castles in the surrounding lands.\n\n";
+            welcomeMessage += "Your goal: Capture 5 castles before resources run out.\n";
+            welcomeMessage += "Good luck!";
             
-            _hud.ShowPopup("Start Game","Ok",null);
-            _hud.OnPopupAccept += () =>
-            {
-                
-            };
+            _hud.ShowPopup(welcomeMessage, "Begin", null);
+            _hud.OnPopupAccept += StartGame;
+            _map.SetTilesInteractionState(false);
+        }
+
+        public void StartGame()
+        {
+            OnPlayerStartGame?.Invoke();
         }
 
         public void Execute()
@@ -37,9 +42,7 @@ namespace GameStates
 
         public void Exit()
         {
-            _mapView.SetTilesInteractable(true);
-            _mapView.ClearTileHighlight(Vector2Int.zero);
-            
+            _hud.OnPopupAccept -= StartGame;
             _hud.HidePopup();
         }
     }

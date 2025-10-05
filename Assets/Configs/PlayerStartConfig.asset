@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PlayerStartConfig
   m_EditorClassIdentifier: Assembly-CSharp::Configs.PlayerStartConfig
   _influence: 20
-  _power: 0
-  _food: 0
+  _power: 2
+  _food: 10
   _gold: 0
   _metal: 0
   _wood: 0

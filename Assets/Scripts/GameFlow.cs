@@ -2,11 +2,10 @@
 using State_Machine;
 using GameStates;
 using Model;
-using Model.Map;
-using View.Map;
-using Presenters;
 using UI;
 using Configs;
+using Map;
+using Events;
 
 public class GameFlow : MonoBehaviour
 {
@@ -14,29 +13,35 @@ public class GameFlow : MonoBehaviour
     [SerializeField] private RedBjorn.ProtoTiles.MapView _mapEditorView;
     [SerializeField] private Hud _hud;
     [SerializeField] private PlayerStartConfig _playerStartConfig;
+    [SerializeField] private TilesConfig _tilesConfig;
+    [SerializeField] private EventsPool _globalEventsPool;
+    [SerializeField] private EventsPool _tavernEventsPool;
+    [SerializeField] private EventsPool _campEventsPool;
 
     private StateMachine _stateMachine;
     private EnterGame _enterGame;
-    private StartTurn _startTurn;
+    private Occupy _occupy;
     private RandomEvent _randomEvent;
+    private TileUpgrade _tileUpgrade;
     private ResourcesUpdate _resourcesUpdate;
-    private PlayerTurn _playerTurn;
-    private EndTurn _endTurn;
     private TransitionState _transitionState;
-
+    private EndGame _endGame; 
+    
     private Player _playerModel;
-
-    private MapModel _mapModel;
-    private MapPresenter _mapPresenter;
-    private MapView _mapView;
-
+    private MapController _map;
+    private EventManager _eventManager;
     private void Start()
     {
         InitializePlayer();
 
-        _mapModel = MapEditorToGameMap.GetMapModel(_mapEditorSettings, _mapEditorView);
-        _mapView = new MapView(_mapEditorView.Tiles);
-        _mapPresenter = new MapPresenter(_mapModel, _mapView);
+        _map = new(_mapEditorSettings, _mapEditorView, _tilesConfig);
+        if (_map.MaxRadius > 5)
+        {
+            
+            
+            _map.HideAtRadius(_map.MaxRadius-1);
+            _map.HideAtRadius(_map.MaxRadius-2);
+        }
 
         InitializeStateMachine();
         _stateMachine.ChangeState(_enterGame);
@@ -46,6 +51,7 @@ public class GameFlow : MonoBehaviour
     {
         _playerModel = new Player();
         _playerModel.OnResourcesChanged += _hud.UpdateResources;
+        _playerModel.OnGameStatsChanged += _hud.UpdateGameStats;
         
         _playerModel.Influence = _playerStartConfig.Influence;
         _playerModel.Power = _playerStartConfig.Power;
@@ -53,6 +59,10 @@ public class GameFlow : MonoBehaviour
         _playerModel.Gold = _playerStartConfig.Gold;
         _playerModel.Metal = _playerStartConfig.Metal;
         _playerModel.Wood = _playerStartConfig.Wood;
+        
+        _playerModel.CurrentTurn = 1;
+        _playerModel.CapturedCastles = 0;
+        _playerModel.TilesCaptured = 0;
     }
 
     private void Update()
@@ -63,18 +73,57 @@ public class GameFlow : MonoBehaviour
     private void InitializeStateMachine()
     {
         _stateMachine = new StateMachine();
-        _enterGame = new EnterGame(_hud, _mapModel, _mapView);
-        _randomEvent = new RandomEvent();
-        _startTurn = new StartTurn();
-        _playerTurn = new PlayerTurn(_mapModel);
-        _endTurn = new EndTurn();
-        _resourcesUpdate = new ResourcesUpdate();
-        _transitionState = new TransitionState();
+        _eventManager = new EventManager(_globalEventsPool, _tavernEventsPool, _campEventsPool);
+        
+        _enterGame = new EnterGame(_hud, _map);
+        _occupy = new Occupy(_map, _hud, _playerModel, _eventManager);
+        _randomEvent = new RandomEvent(_map, _hud, _playerModel, _eventManager);
+        _tileUpgrade = new TileUpgrade(_map, _hud, _playerModel);
+        _resourcesUpdate = new ResourcesUpdate(_playerModel, _map);
+        _transitionState = new TransitionState(_playerModel, _hud);
+        _endGame = new EndGame(_hud);
+
+        // Setup state transitions
+        _enterGame.OnPlayerStartGame += () =>
+        {
+            _stateMachine.ChangeState(_randomEvent);
+        };
+
+        _randomEvent.OnEventCompleted += () =>
+        {
+            _stateMachine.ChangeState(_occupy);
+        };
+
+        _occupy.OnTileCaptured += () =>
+        {
+            _stateMachine.ChangeState(_tileUpgrade);
+        };
+
+        _tileUpgrade.OnUpgradeCompleted += () =>
+        {
+            _stateMachine.ChangeState(_resourcesUpdate);
+        };
+
+        _resourcesUpdate.OnResourcesUpdated += () =>
+        {
+            _stateMachine.ChangeState(_transitionState);
+        };
+
+        _transitionState.OnNextTurn += () =>
+        {
+            _stateMachine.ChangeState(_randomEvent);
+        };
+
+        _transitionState.OnGameEnd += (condition) =>
+        {
+            _endGame.SetEndCondition(condition);
+            _stateMachine.ChangeState(_endGame);
+        };
     }
 
     private void OnDestroy()
     {
         _playerModel.OnResourcesChanged -= _hud.UpdateResources;
-        _mapPresenter.Cleanup();
+        _playerModel.OnGameStatsChanged -= _hud.UpdateGameStats;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using RedBjorn.Utils;
 using System;
 using System.Linq;
+using Map;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -668,7 +669,7 @@ namespace RedBjorn.ProtoTiles
 #if UNITY_EDITOR
                         var tileGo = PrefabUtility.InstantiatePrefab(prefab, parent.transform) as GameObject;
                  
-                        holder.Tiles[tile.TilePos] = tileGo.GetOrAddComponent<TileView>();
+                        holder.Tiles[tile.TilePos] = tileGo.GetOrAddComponent<Tile>();
                         holder.Tiles[tile.TilePos].SetPosition(tile.TilePos);
                         tileGo.transform.localRotation = Quaternion.Inverse(parent.transform.rotation);
                         tileGo.transform.position = Map.ToWorld(tile.TilePos, Map.Edge);

@@ -5,6 +5,7 @@ namespace Model
     public class Player
     {
         public event Action<int, int, int, int, int, int> OnResourcesChanged;
+        public event Action<int, int> OnGameStatsChanged; // (currentTurn, capturedCastles)
 
         private int _influence;
         private int _power;
@@ -12,6 +13,10 @@ namespace Model
         private int _gold;
         private int _metal;
         private int _wood;
+
+        private int _currentTurn;
+        private int _capturedCastles;
+        private int _tilesCaptured;
 
         //Resources
         public int Influence
@@ -74,9 +79,48 @@ namespace Model
             }
         }
 
+        public int CurrentTurn
+        {
+            get => _currentTurn;
+            set
+            {
+                _currentTurn = value;
+                NotifyGameStatsChanged();
+            }
+        }
+
+        public int CapturedCastles
+        {
+            get => _capturedCastles;
+            set
+            {
+                _capturedCastles = value;
+                NotifyGameStatsChanged();
+            }
+        }
+
+        public int TilesCaptured
+        {
+            get => _tilesCaptured;
+            set
+            {
+                _tilesCaptured = value;
+                // Check for influence restoration every 3 tiles
+                if (_tilesCaptured > 0 && _tilesCaptured % 3 == 0)
+                {
+                    Influence += 1;
+                }
+            }
+        }
+
         private void NotifyResourcesChanged()
         {
             OnResourcesChanged?.Invoke(_influence, _power, _food, _gold, _metal, _wood);
+        }
+
+        private void NotifyGameStatsChanged()
+        {
+            OnGameStatsChanged?.Invoke(_currentTurn, _capturedCastles);
         }
     }
 }

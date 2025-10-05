@@ -1,0 +1,181 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91d010bcbc3107140b841f319b492414, type: 3}
+  m_Name: TilesConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Configs.TilesConfig
+  _tiles:
+  - Type: 0
+    DisplayName: Simple
+    Description: Simple Emty Tile, nothing to add nothin to take, but you can go
+      throught
+    InfluenceCost: 1
+    PowerCost: 0
+    WoodCost: 0
+    GoldCost: 0
+    MetalCost: 0
+    RewardInfluence: 0
+    RewardPower: 0
+    RewardFood: 0
+    RewardWood: 0
+    RewardGold: 0
+    RewardMetal: 0
+    IncomeFood: 0
+    IncomePower: 0
+    IncomeWood: 0
+    IncomeGold: 0
+    IncomeMetal: 0
+    CanBeUpgraded: 0
+    UpgradeWoodCost: 0
+    UpgradeGoldCost: 0
+    UpgradeMetalCost: 0
+    UpgradeFoodBonus: 0
+    UpgradePowerBonus: 0
+    UpgradeWoodBonus: 0
+    UpgradeGoldBonus: 0
+    UpgradeMetalBonus: 0
+    IsWalkable: 1
+    IsCastle: 0
+    TriggersTavernEvent: 0
+    TriggersCampEvent: 0
+    IsChest: 0
+  - Type: 4
+    DisplayName: Castle
+    Description: You majesties castles
+    InfluenceCost: 0
+    PowerCost: 0
+    WoodCost: 0
+    GoldCost: 0
+    MetalCost: 0
+    RewardInfluence: 0
+    RewardPower: 0
+    RewardFood: 0
+    RewardWood: 0
+    RewardGold: 0
+    RewardMetal: 0
+    IncomeFood: 0
+    IncomePower: 0
+    IncomeWood: 0
+    IncomeGold: 0
+    IncomeMetal: 0
+    CanBeUpgraded: 0
+    UpgradeWoodCost: 0
+    UpgradeGoldCost: 0
+    UpgradeMetalCost: 0
+    UpgradeFoodBonus: 0
+    UpgradePowerBonus: 0
+    UpgradeWoodBonus: 0
+    UpgradeGoldBonus: 0
+    UpgradeMetalBonus: 0
+    IsWalkable: 1
+    IsCastle: 1
+    TriggersTavernEvent: 0
+    TriggersCampEvent: 0
+    IsChest: 0
+  - Type: 1
+    DisplayName: Field
+    Description: Give you food
+    InfluenceCost: 1
+    PowerCost: 0
+    WoodCost: 0
+    GoldCost: 0
+    MetalCost: 0
+    RewardInfluence: 0
+    RewardPower: 0
+    RewardFood: 1
+    RewardWood: 0
+    RewardGold: 0
+    RewardMetal: 0
+    IncomeFood: 0
+    IncomePower: 2
+    IncomeWood: 0
+    IncomeGold: 0
+    IncomeMetal: 0
+    CanBeUpgraded: 1
+    UpgradeWoodCost: 0
+    UpgradeGoldCost: 1
+    UpgradeMetalCost: 0
+    UpgradeFoodBonus: 1
+    UpgradePowerBonus: 0
+    UpgradeWoodBonus: 0
+    UpgradeGoldBonus: 0
+    UpgradeMetalBonus: 0
+    IsWalkable: 1
+    IsCastle: 0
+    TriggersTavernEvent: 0
+    TriggersCampEvent: 0
+    IsChest: 0
+  - Type: 4
+    DisplayName: Castle
+    Description: collect IT!!
+    InfluenceCost: 0
+    PowerCost: 0
+    WoodCost: 0
+    GoldCost: 0
+    MetalCost: 0
+    RewardInfluence: 0
+    RewardPower: 0
+    RewardFood: 0
+    RewardWood: 0
+    RewardGold: 0
+    RewardMetal: 0
+    IncomeFood: 0
+    IncomePower: 0
+    IncomeWood: 0
+    IncomeGold: 0
+    IncomeMetal: 0
+    CanBeUpgraded: 0
+    UpgradeWoodCost: 0
+    UpgradeGoldCost: 0
+    UpgradeMetalCost: 0
+    UpgradeFoodBonus: 0
+    UpgradePowerBonus: 0
+    UpgradeWoodBonus: 0
+    UpgradeGoldBonus: 0
+    UpgradeMetalBonus: 0
+    IsWalkable: 1
+    IsCastle: 1
+    TriggersTavernEvent: 0
+    TriggersCampEvent: 0
+    IsChest: 0
+  - Type: 2
+    DisplayName: VIllage
+    Description: take pessants to rise you POWER!!!!!
+    InfluenceCost: 1
+    PowerCost: 0
+    WoodCost: 0
+    GoldCost: 0
+    MetalCost: 0
+    RewardInfluence: 0
+    RewardPower: 10
+    RewardFood: 0
+    RewardWood: 0
+    RewardGold: 0
+    RewardMetal: 0
+    IncomeFood: 0
+    IncomePower: 0
+    IncomeWood: 0
+    IncomeGold: 0
+    IncomeMetal: 0
+    CanBeUpgraded: 1
+    UpgradeWoodCost: 0
+    UpgradeGoldCost: 0
+    UpgradeMetalCost: 1
+    UpgradeFoodBonus: 0
+    UpgradePowerBonus: 1
+    UpgradeWoodBonus: 0
+    UpgradeGoldBonus: 0
+    UpgradeMetalBonus: 0
+    IsWalkable: 1
+    IsCastle: 0
+    TriggersTavernEvent: 0
+    TriggersCampEvent: 0
+    IsChest: 0

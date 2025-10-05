@@ -17,12 +17,18 @@ namespace UI
         [SerializeField] private TMP_Text Iron;
         [SerializeField] private TMP_Text Gold;
 
+        [SerializeField] private TMP_Text CurrentTurn;
+        [SerializeField] private TMP_Text CapturedCastles;
+
         [SerializeField] private GameObject Popup;
         [SerializeField] private TMP_Text PopupMessage;
         [SerializeField] private TMP_Text PopupAcceptLabel;
         [SerializeField] private TMP_Text PopupDeclineLabel;
         [SerializeField] private Button PopupAccept;
         [SerializeField] private Button PopupDecline;
+
+        [SerializeField] private GameObject TileInfoPanel;
+        [SerializeField] private TMP_Text TileInfoText;
 
         private void Start()
         {
@@ -40,6 +46,14 @@ namespace UI
             Gold.text = gold.ToString();
         }
 
+        public void UpdateGameStats(int currentTurn, int capturedCastles)
+        {
+            if (CurrentTurn != null)
+                CurrentTurn.text = $"Turn: {currentTurn}";
+            if (CapturedCastles != null)
+                CapturedCastles.text = $"Castles: {capturedCastles}";
+        }
+
         public void ShowPopup(string message, string accept, string decline)
         {
             Popup.gameObject.SetActive(true);
@@ -54,6 +68,23 @@ namespace UI
         public void HidePopup()
         {
             Popup.gameObject.SetActive(false);
+        }
+
+        public void ShowTileInfo(string info)
+        {
+            if (TileInfoPanel != null && TileInfoText != null)
+            {
+                TileInfoPanel.SetActive(true);
+                TileInfoText.text = info;
+            }
+        }
+
+        public void HideTileInfo()
+        {
+            if (TileInfoPanel != null)
+            {
+                TileInfoPanel.SetActive(false);
+            }
         }
     }
 }
