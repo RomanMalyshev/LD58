@@ -67,8 +67,7 @@ namespace GameStates
         private void ShowTurnEndMessage()
         {
             string message = $"Turn {_player.CurrentTurn} Complete!\n\n";
-            message += $"Castles Captured: {_player.CapturedCastles}/{GameConditionsChecker.CASTLES_TO_WIN}\n";
-            message += $"Turns Remaining: {GameConditionsChecker.MAX_TURNS - _player.CurrentTurn}";
+            message += $"Castles Captured: {_player.CapturedCastles}/{GameConditionsChecker.CASTLES_TO_WIN}";
 
             _hud.ShowPopup(message, "Next Turn", null);
             _hud.OnPopupAccept += OnContinue;

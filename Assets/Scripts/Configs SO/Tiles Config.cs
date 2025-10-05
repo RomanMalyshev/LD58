@@ -68,7 +68,7 @@ namespace Configs
         public int UpgradeMetalBonus = 0;
 
         [Header("Special Properties")]
-        public bool IsWalkable = true;
+        public bool CanBeOccupied = true;
         public bool IsCastle = false;
         public bool TriggersTavernEvent = false;
         public bool TriggersCampEvent = false;

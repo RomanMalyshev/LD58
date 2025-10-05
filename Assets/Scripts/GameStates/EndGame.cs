@@ -49,13 +49,10 @@ namespace GameStates
                     message = "VICTORY!\n\nYou have collected all the castles and secured your kingdom!";
                     break;
                 case GameEndCondition.DefeatNoFood:
-                    message = "DEFEAT\n\nYour people starved. The kingdom has fallen.";
+                    message = "DEFEAT - STARVATION\n\nYour people starved. The kingdom has fallen.";
                     break;
                 case GameEndCondition.DefeatNoInfluence:
-                    message = "DEFEAT\n\nYou lost all influence. The kingdom has fallen.";
-                    break;
-                case GameEndCondition.DefeatTimeOut:
-                    message = "DEFEAT\n\nTime ran out. You failed to collect enough castles.";
+                    message = "DEFEAT - REBELLION\n\nYou lost all influence. The people have rebelled!";
                     break;
                 default:
                     message = "Game Over";

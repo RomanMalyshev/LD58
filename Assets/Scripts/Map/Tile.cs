@@ -19,6 +19,7 @@ namespace Map
         [SerializeField] private Color _occupiedColor = Color.red;
         [SerializeField] private Color _hoverColor = Color.yellow;
         [SerializeField] private Color _readyToOccupy = Color.green;
+        [SerializeField] private Color _selectedColor = Color.blue;
 
         [SerializeField] private MouseTrigger _mouseTrigger;
         [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -26,6 +27,7 @@ namespace Map
         private bool _isOccupied;
         private bool _isHovered;
         private bool _isReadyToOccupy;
+        private bool _isSelected;
         private bool _isInteractable = true;
         private int _upgradeLevel = 0;
         private TileConfig _config;
@@ -115,6 +117,10 @@ namespace Map
             {
                 _spriteRenderer.color = _hoverColor;
             }
+            else if (_isSelected)
+            {
+                _spriteRenderer.color = _selectedColor;
+            }
             else if (_isOccupied)
             {
                 _spriteRenderer.color = _occupiedColor;
@@ -176,6 +182,12 @@ namespace Map
         {
             if (_config == null) return 0;
             return _config.IncomeMetal + (_config.UpgradeMetalBonus * _upgradeLevel);
+        }
+
+        public void SetSelected(bool isSelected)
+        {
+            _isSelected = isSelected;
+            UpdateVisual();
         }
     }
 }

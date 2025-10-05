@@ -54,6 +54,13 @@ namespace GameStates
         {
             _map.SetTilesForOccupyInteractionState(false);
             UnsubscribeFromTileClicks();
+            
+            // Deselect tile on exit
+            if (_selectedTile != null)
+            {
+                _selectedTile.SetSelected(false);
+            }
+            
             _hud.OnPopupAccept -= OnConfirmCapture;
             _hud.OnPopupDecline -= OnCancelCapture;
             _hud.HidePopup();
@@ -96,8 +103,24 @@ namespace GameStates
         {
             if (_waitingForConfirmation || _captureCompleted) return;
             if (tile.Config == null) return;
+            
+            // Check if tile can be occupied
+            if (!tile.Config.CanBeOccupied)
+            {
+                _hud.ShowPopup("This tile cannot be occupied!", "OK", null);
+                _hud.OnPopupAccept += () => { _hud.HidePopup(); };
+                return;
+            }
 
+            // Deselect previous tile
+            if (_selectedTile != null)
+            {
+                _selectedTile.SetSelected(false);
+            }
+
+            // Select new tile
             _selectedTile = tile;
+            _selectedTile.SetSelected(true);
             ShowCaptureConfirmation();
         }
 
@@ -113,12 +136,36 @@ namespace GameStates
             if (tile.Config.GoldCost > 0) info += $", {tile.Config.GoldCost} Gold";
             if (tile.Config.MetalCost > 0) info += $", {tile.Config.MetalCost} Metal";
 
-            info += "\n\nIncome per turn:\n";
-            if (tile.Config.IncomeFood > 0) info += $"Food: +{tile.Config.IncomeFood}\n";
-            if (tile.Config.IncomePower > 0) info += $"Power: +{tile.Config.IncomePower}\n";
-            if (tile.Config.IncomeWood > 0) info += $"Wood: +{tile.Config.IncomeWood}\n";
-            if (tile.Config.IncomeGold > 0) info += $"Gold: +{tile.Config.IncomeGold}\n";
-            if (tile.Config.IncomeMetal > 0) info += $"Metal: +{tile.Config.IncomeMetal}\n";
+            // Immediate rewards
+            bool hasRewards = tile.Config.RewardInfluence != 0 || tile.Config.RewardPower != 0 || 
+                              tile.Config.RewardFood != 0 || tile.Config.RewardWood != 0 || 
+                              tile.Config.RewardGold != 0 || tile.Config.RewardMetal != 0;
+            
+            if (hasRewards)
+            {
+                info += "\n\nImmediate Rewards:\n";
+                if (tile.Config.RewardInfluence != 0) info += $"Influence: {tile.Config.RewardInfluence:+0;-0}\n";
+                if (tile.Config.RewardPower != 0) info += $"Power: {tile.Config.RewardPower:+0;-0}\n";
+                if (tile.Config.RewardFood != 0) info += $"Food: {tile.Config.RewardFood:+0;-0}\n";
+                if (tile.Config.RewardWood != 0) info += $"Wood: {tile.Config.RewardWood:+0;-0}\n";
+                if (tile.Config.RewardGold != 0) info += $"Gold: {tile.Config.RewardGold:+0;-0}\n";
+                if (tile.Config.RewardMetal != 0) info += $"Metal: {tile.Config.RewardMetal:+0;-0}\n";
+            }
+
+            // Passive income
+            bool hasIncome = tile.Config.IncomeFood != 0 || tile.Config.IncomePower != 0 || 
+                             tile.Config.IncomeWood != 0 || tile.Config.IncomeGold != 0 || 
+                             tile.Config.IncomeMetal != 0;
+            
+            if (hasIncome)
+            {
+                info += "\n\nIncome per Turn:\n";
+                if (tile.Config.IncomeFood != 0) info += $"Food: {tile.Config.IncomeFood:+0;-0}\n";
+                if (tile.Config.IncomePower != 0) info += $"Power: {tile.Config.IncomePower:+0;-0}\n";
+                if (tile.Config.IncomeWood != 0) info += $"Wood: {tile.Config.IncomeWood:+0;-0}\n";
+                if (tile.Config.IncomeGold != 0) info += $"Gold: {tile.Config.IncomeGold:+0;-0}\n";
+                if (tile.Config.IncomeMetal != 0) info += $"Metal: {tile.Config.IncomeMetal:+0;-0}\n";
+            }
 
             _hud.ShowTileInfo(info);
         }
@@ -140,10 +187,36 @@ namespace GameStates
             if (config.GoldCost > 0) message += $", {config.GoldCost} Gold";
             if (config.MetalCost > 0) message += $", {config.MetalCost} Metal";
             
-            message += "\n\nRewards:\n";
-            if (config.RewardInfluence != 0) message += $"Influence: {config.RewardInfluence:+0;-0}\n";
-            if (config.RewardPower != 0) message += $"Power: {config.RewardPower:+0;-0}\n";
-            if (config.RewardFood != 0) message += $"Food: {config.RewardFood:+0;-0}\n";
+            // Immediate rewards
+            bool hasRewards = config.RewardInfluence != 0 || config.RewardPower != 0 || 
+                              config.RewardFood != 0 || config.RewardWood != 0 || 
+                              config.RewardGold != 0 || config.RewardMetal != 0;
+            
+            if (hasRewards)
+            {
+                message += "\n\nImmediate Rewards:\n";
+                if (config.RewardInfluence != 0) message += $"Influence: {config.RewardInfluence:+0;-0}\n";
+                if (config.RewardPower != 0) message += $"Power: {config.RewardPower:+0;-0}\n";
+                if (config.RewardFood != 0) message += $"Food: {config.RewardFood:+0;-0}\n";
+                if (config.RewardWood != 0) message += $"Wood: {config.RewardWood:+0;-0}\n";
+                if (config.RewardGold != 0) message += $"Gold: {config.RewardGold:+0;-0}\n";
+                if (config.RewardMetal != 0) message += $"Metal: {config.RewardMetal:+0;-0}\n";
+            }
+            
+            // Passive income
+            bool hasIncome = config.IncomeFood != 0 || config.IncomePower != 0 || 
+                             config.IncomeWood != 0 || config.IncomeGold != 0 || 
+                             config.IncomeMetal != 0;
+            
+            if (hasIncome)
+            {
+                message += "\n\nIncome per Turn:\n";
+                if (config.IncomeFood != 0) message += $"Food: {config.IncomeFood:+0;-0}\n";
+                if (config.IncomePower != 0) message += $"Power: {config.IncomePower:+0;-0}\n";
+                if (config.IncomeWood != 0) message += $"Wood: {config.IncomeWood:+0;-0}\n";
+                if (config.IncomeGold != 0) message += $"Gold: {config.IncomeGold:+0;-0}\n";
+                if (config.IncomeMetal != 0) message += $"Metal: {config.IncomeMetal:+0;-0}\n";
+            }
 
             _hud.ShowPopup(message, "Yes", "No");
             _hud.OnPopupAccept += OnConfirmCapture;
@@ -178,6 +251,13 @@ namespace GameStates
             _hud.OnPopupAccept -= OnConfirmCapture;
             _hud.OnPopupDecline -= OnCancelCapture;
             _hud.HidePopup();
+            
+            // Deselect tile
+            if (_selectedTile != null)
+            {
+                _selectedTile.SetSelected(false);
+            }
+            
             _selectedTile = null;
         }
 
@@ -195,6 +275,9 @@ namespace GameStates
         private void CaptureTile(Tile tile)
         {
             var config = tile.Config;
+
+            // Deselect tile (it will become occupied)
+            tile.SetSelected(false);
 
             // Pay costs
             _player.Influence -= config.InfluenceCost;

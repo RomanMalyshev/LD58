@@ -44,9 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae08be6ca63147a5b085419851f245f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameFlow
-  _mapEditorSettings: {fileID: 0}
+  _mapEditorSettings: {fileID: 11400000, guid: 39cdefbfa6dbee2498dd4b7c90f36ac5, type: 2}
   _mapEditorView: {fileID: 0}
   _hud: {fileID: 0}
   _playerStartConfig: {fileID: 11400000, guid: 3f548284a8a05f8448f62b0433fcef49, type: 2}
-  _tilesConfig: {fileID: 11400000, guid: 0c989d5321923a7488376cac4564515f, type: 2}
-  _eventPoolConfig: {fileID: 11400000, guid: 5c67d9aed9c776645be1f51e6707b196, type: 2}
+  _tilesConfig: {fileID: 11400000, guid: bca0ee931d4dedf4286b7b585193bb2c, type: 2}
+  _globalEventsPool: {fileID: 11400000, guid: 979ab8649c4c8df478d9b752ade3b110, type: 2}
+  _tavernEventsPool: {fileID: 11400000, guid: db791e35b0fe19049a263e201e20444c, type: 2}
+  _campEventsPool: {fileID: 11400000, guid: 5419c22a590b1f14495b9d20dc5abef4, type: 2}

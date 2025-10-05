@@ -69,6 +69,33 @@ MonoBehaviour:
     Prefabs:
     - {fileID: 8335891982828581854, guid: 79cb35522f9844344bb690ac8abfbd46, type: 3}
     TileType: 0
+  - Type: Ground
+    Id: 6872cdfb2c74adf4283efe25df3dfffb
+    MapColor: {r: 1, g: 1, b: 1, a: 0.5}
+    Prefab: {fileID: 0}
+    GridOffset: 0
+    Tags: []
+    Prefabs:
+    - {fileID: 8335891982828581854, guid: a784a8a096aa4b942ae233baf88c3a3c, type: 3}
+    TileType: 12
+  - Type: river
+    Id: c2868a3abd87593458739d228cba2705
+    MapColor: {r: 1, g: 1, b: 1, a: 0.5}
+    Prefab: {fileID: 0}
+    GridOffset: 0
+    Tags: []
+    Prefabs:
+    - {fileID: 8335891982828581854, guid: e0d81ca6bd525554ca0ae56a9c5e7011, type: 3}
+    TileType: 11
+  - Type: Forest
+    Id: d9f3208704a3e16479c1006bbf94a052
+    MapColor: {r: 1, g: 1, b: 1, a: 0.5}
+    Prefab: {fileID: 0}
+    GridOffset: 0
+    Tags: []
+    Prefabs:
+    - {fileID: 8335891982828581854, guid: 3664f66d468c7c548be06d943f2f0abe, type: 3}
+    TileType: 5
   Tiles:
   - TilePos: {x: 0, y: 0, z: 0}
     Id: 78d8c911b167db544a68a8437d40c41a
@@ -137,7 +164,7 @@ MonoBehaviour:
     - 0
     - 0
   - TilePos: {x: -1, y: 0, z: 1}
-    Id: 88a7ddf1967e8704cb0176ca36dd1c0a
+    Id: 6872cdfb2c74adf4283efe25df3dfffb
     PrefabIndex: 0
     MovableArea: 1
     SideHeight:
@@ -148,7 +175,7 @@ MonoBehaviour:
     - 0
     - 0
   - TilePos: {x: 1, y: 0, z: -1}
-    Id: 88a7ddf1967e8704cb0176ca36dd1c0a
+    Id: d9f3208704a3e16479c1006bbf94a052
     PrefabIndex: 0
     MovableArea: 1
     SideHeight:
@@ -181,7 +208,7 @@ MonoBehaviour:
     - 0
     - 0
   - TilePos: {x: 0, y: 1, z: -1}
-    Id: 88a7ddf1967e8704cb0176ca36dd1c0a
+    Id: c2868a3abd87593458739d228cba2705
     PrefabIndex: 0
     MovableArea: 1
     SideHeight:

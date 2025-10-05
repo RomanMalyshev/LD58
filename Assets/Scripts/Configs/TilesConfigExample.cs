@@ -15,7 +15,7 @@ SIMPLE (Empty tiles: поляна, дорога, земля)
 Type: Simple
 DisplayName: "Empty Land"
 InfluenceCost: 1
-IsWalkable: true
+CanBeOccupied: true
 All other values: 0/false
 
 -------------------
@@ -48,7 +48,7 @@ Type: PlayerCastle
 DisplayName: "Your Castle"
 InfluenceCost: 0
 IsCastle: true
-IsWalkable: true
+CanBeOccupied: true
 
 -------------------
 ENEMY CASTLE (Замок)
@@ -59,7 +59,7 @@ InfluenceCost: 3
 PowerCost: 5 (requires military strength)
 RewardInfluence: 2
 IsCastle: true
-IsWalkable: true
+CanBeOccupied: true
 
 -------------------
 FOREST (Лес)
@@ -130,8 +130,8 @@ MOUNTAIN (Непроходимые)
 -------------------
 Type: Mountain
 DisplayName: "Mountain"
-IsWalkable: false
-(Cannot be captured)
+CanBeOccupied: false
+(Cannot be captured - impassable terrain)
 
 ===================
 HOW TO CREATE IN UNITY:

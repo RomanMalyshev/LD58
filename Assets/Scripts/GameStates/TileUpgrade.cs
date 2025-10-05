@@ -17,7 +17,7 @@ namespace GameStates
 
         private List<Tile> _upgradeableTiles;
         private Tile _selectedTile;
-        private bool _waitingForChoice;
+        private bool _waitingForConfirmation;
         private bool _upgradeCompleted;
 
         public TileUpgrade(MapController map, Hud hud, Player player)
@@ -29,7 +29,7 @@ namespace GameStates
 
         public void Enter()
         {
-            _waitingForChoice = false;
+            _waitingForConfirmation = false;
             _upgradeCompleted = false;
             _selectedTile = null;
 
@@ -42,7 +42,8 @@ namespace GameStates
                 return;
             }
 
-            ShowUpgradeOptions();
+            ShowUpgradePrompt();
+            SetupUpgradeableTilesInteraction();
         }
 
         public void Execute()
@@ -55,74 +56,212 @@ namespace GameStates
 
         public void Exit()
         {
-            _hud.OnPopupAccept -= OnAcceptUpgrade;
+            CleanupUpgradeableTilesInteraction();
+            
+            // Deselect tile on exit
+            if (_selectedTile != null)
+            {
+                _selectedTile.SetSelected(false);
+            }
+            
+            _hud.OnPopupAccept -= OnConfirmUpgrade;
+            _hud.OnPopupDecline -= OnCancelUpgrade;
             _hud.OnPopupDecline -= OnSkipUpgrade;
+            _hud.OnPopupAccept -= OnReturnToSelection;
+            _hud.HideTileInfo();
             _hud.HidePopup();
         }
 
-        private void ShowUpgradeOptions()
+        private void ShowUpgradePrompt()
         {
-            string message = "Would you like to upgrade a tile?\n\n";
-            message += "Upgradeable tiles:\n";
+            string message = "Choose a tile to upgrade.\n\n";
+            message += $"Available: {_upgradeableTiles.Count} tile(s)\n\n";
+            message += "Click on a highlighted tile to see upgrade details.";
 
-            foreach (var tile in _upgradeableTiles)
-            {
-                var config = tile.Config;
-                message += $"- {config.DisplayName} (Lvl {tile.UpgradeLevel})\n";
-                message += $"  Cost: ";
-                
-                if (config.UpgradeWoodCost > 0) message += $"{config.UpgradeWoodCost} Wood ";
-                if (config.UpgradeGoldCost > 0) message += $"{config.UpgradeGoldCost} Gold ";
-                if (config.UpgradeMetalCost > 0) message += $"{config.UpgradeMetalCost} Metal ";
-                
-                message += "\n";
-            }
-
-            _hud.ShowPopup(message, "Upgrade", "Skip");
-            _hud.OnPopupAccept += OnAcceptUpgrade;
+            _hud.ShowPopup(message, null, "Skip");
             _hud.OnPopupDecline += OnSkipUpgrade;
-            _waitingForChoice = true;
         }
 
-        private void OnAcceptUpgrade()
+        private void SetupUpgradeableTilesInteraction()
         {
-            if (!_waitingForChoice) return;
-            _waitingForChoice = false;
-
-            _hud.OnPopupAccept -= OnAcceptUpgrade;
-            _hud.OnPopupDecline -= OnSkipUpgrade;
-
-            // For simplicity, upgrade first affordable tile
-            Tile tileToUpgrade = null;
             foreach (var tile in _upgradeableTiles)
             {
-                if (CanAffordUpgrade(tile))
-                {
-                    tileToUpgrade = tile;
-                    break;
-                }
+                tile.SetInteractable(true);
+                tile.SetReadyToOccupy(true); // Визуально подсвечиваем тайл
+                tile.OnClicked += () => OnTileClicked(tile);
+                tile.OnHoverEnter += () => OnTileHoverEnter(tile);
+                tile.OnHoverExit += () => OnTileHoverExit(tile);
+            }
+        }
+
+        private void CleanupUpgradeableTilesInteraction()
+        {
+            foreach (var tile in _upgradeableTiles)
+            {
+                tile.SetInteractable(false);
+                tile.SetReadyToOccupy(false); // Убираем подсветку
+                // Note: В идеале нужно отписаться от событий, но для упрощения
+                // полагаемся на то, что Exit очистит состояние
+            }
+        }
+
+        private void OnTileClicked(Tile tile)
+        {
+            if (_waitingForConfirmation || _upgradeCompleted) return;
+            if (tile.Config == null) return;
+
+            // Deselect previous tile
+            if (_selectedTile != null)
+            {
+                _selectedTile.SetSelected(false);
             }
 
-            if (tileToUpgrade != null)
+            // Select new tile
+            _selectedTile = tile;
+            _selectedTile.SetSelected(true);
+            ShowUpgradeConfirmation();
+        }
+
+        private void OnTileHoverEnter(Tile tile)
+        {
+            if (_waitingForConfirmation || _upgradeCompleted) return;
+            if (tile.Config == null) return;
+
+            string info = $"{tile.Config.DisplayName} (Level {tile.UpgradeLevel})\n\n";
+            info += "Upgrade Cost:\n";
+            
+            if (tile.Config.UpgradeWoodCost > 0) 
+                info += $"Wood: {tile.Config.UpgradeWoodCost}\n";
+            if (tile.Config.UpgradeGoldCost > 0) 
+                info += $"Gold: {tile.Config.UpgradeGoldCost}\n";
+            if (tile.Config.UpgradeMetalCost > 0) 
+                info += $"Metal: {tile.Config.UpgradeMetalCost}\n";
+
+            info += "\nUpgrade Bonus:\n";
+            if (tile.Config.UpgradeFoodBonus > 0) 
+                info += $"Food: +{tile.Config.UpgradeFoodBonus}\n";
+            if (tile.Config.UpgradePowerBonus > 0) 
+                info += $"Power: +{tile.Config.UpgradePowerBonus}\n";
+            if (tile.Config.UpgradeWoodBonus > 0) 
+                info += $"Wood: +{tile.Config.UpgradeWoodBonus}\n";
+            if (tile.Config.UpgradeGoldBonus > 0) 
+                info += $"Gold: +{tile.Config.UpgradeGoldBonus}\n";
+            if (tile.Config.UpgradeMetalBonus > 0) 
+                info += $"Metal: +{tile.Config.UpgradeMetalBonus}\n";
+
+            _hud.ShowTileInfo(info);
+        }
+
+        private void OnTileHoverExit(Tile tile)
+        {
+            _hud.HideTileInfo();
+        }
+
+        private void ShowUpgradeConfirmation()
+        {
+            var config = _selectedTile.Config;
+            
+            string message = $"Upgrade {config.DisplayName}?\n";
+            message += $"Current Level: {_selectedTile.UpgradeLevel}\n\n";
+            
+            message += "Cost: ";
+            bool hasCost = false;
+            if (config.UpgradeWoodCost > 0) 
             {
-                UpgradeTile(tileToUpgrade);
+                message += $"{config.UpgradeWoodCost} Wood";
+                hasCost = true;
             }
-            else
+            if (config.UpgradeGoldCost > 0) 
             {
-                _hud.ShowPopup("Not enough resources to upgrade!", "OK", null);
-                _hud.OnPopupAccept += () => { _upgradeCompleted = true; };
+                if (hasCost) message += ", ";
+                message += $"{config.UpgradeGoldCost} Gold";
+                hasCost = true;
             }
+            if (config.UpgradeMetalCost > 0) 
+            {
+                if (hasCost) message += ", ";
+                message += $"{config.UpgradeMetalCost} Metal";
+            }
+
+            message += "\n\nBonus per turn:\n";
+            if (config.UpgradeFoodBonus > 0) 
+                message += $"+{config.UpgradeFoodBonus} Food\n";
+            if (config.UpgradePowerBonus > 0) 
+                message += $"+{config.UpgradePowerBonus} Power\n";
+            if (config.UpgradeWoodBonus > 0) 
+                message += $"+{config.UpgradeWoodBonus} Wood\n";
+            if (config.UpgradeGoldBonus > 0) 
+                message += $"+{config.UpgradeGoldBonus} Gold\n";
+            if (config.UpgradeMetalBonus > 0) 
+                message += $"+{config.UpgradeMetalBonus} Metal\n";
+
+            // Скрываем начальный popup
+            _hud.HidePopup();
+            _hud.OnPopupDecline -= OnSkipUpgrade;
+
+            _hud.ShowPopup(message, "Upgrade", "Cancel");
+            _hud.OnPopupAccept += OnConfirmUpgrade;
+            _hud.OnPopupDecline += OnCancelUpgrade;
+            _waitingForConfirmation = true;
+        }
+
+        private void OnConfirmUpgrade()
+        {
+            if (!_waitingForConfirmation) return;
+            _waitingForConfirmation = false;
+
+            _hud.OnPopupAccept -= OnConfirmUpgrade;
+            _hud.OnPopupDecline -= OnCancelUpgrade;
+            _hud.HidePopup();
+
+            if (!CanAffordUpgrade(_selectedTile))
+            {
+                _hud.ShowPopup("Not enough resources!", "OK", null);
+                _hud.OnPopupAccept += OnReturnToSelection;
+                return;
+            }
+
+            UpgradeTile(_selectedTile);
+        }
+
+        private void OnCancelUpgrade()
+        {
+            if (!_waitingForConfirmation) return;
+            _waitingForConfirmation = false;
+
+            _hud.OnPopupAccept -= OnConfirmUpgrade;
+            _hud.OnPopupDecline -= OnCancelUpgrade;
+            _hud.HidePopup();
+            
+            // Deselect tile
+            if (_selectedTile != null)
+            {
+                _selectedTile.SetSelected(false);
+            }
+            
+            _selectedTile = null;
+            ShowUpgradePrompt();
+        }
+
+        private void OnReturnToSelection()
+        {
+            _hud.OnPopupAccept -= OnReturnToSelection;
+            _hud.HidePopup();
+            
+            // Deselect tile
+            if (_selectedTile != null)
+            {
+                _selectedTile.SetSelected(false);
+            }
+            
+            _selectedTile = null;
+            ShowUpgradePrompt();
         }
 
         private void OnSkipUpgrade()
         {
-            if (!_waitingForChoice) return;
-            _waitingForChoice = false;
-
-            _hud.OnPopupAccept -= OnAcceptUpgrade;
             _hud.OnPopupDecline -= OnSkipUpgrade;
             _hud.HidePopup();
-
             _upgradeCompleted = true;
         }
 
@@ -138,6 +277,9 @@ namespace GameStates
         private void UpgradeTile(Tile tile)
         {
             var config = tile.Config;
+
+            // Deselect tile
+            tile.SetSelected(false);
 
             // Pay costs
             _player.Wood -= config.UpgradeWoodCost;

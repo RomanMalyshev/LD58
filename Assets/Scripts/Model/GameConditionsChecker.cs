@@ -3,7 +3,6 @@ namespace Model
     public static class GameConditionsChecker
     {
         public const int CASTLES_TO_WIN = 1;
-        public const int MAX_TURNS = 20;
 
         public static GameEndCondition CheckGameConditions(Player player)
         {
@@ -16,11 +15,6 @@ namespace Model
             if (player.Influence <= 0)
             {
                 return GameEndCondition.DefeatNoInfluence;
-            }
-
-            if (player.CurrentTurn > MAX_TURNS)
-            {
-                return GameEndCondition.DefeatTimeOut;
             }
 
             // Check victory condition
@@ -39,8 +33,7 @@ namespace Model
         Continue,
         Victory,
         DefeatNoFood,
-        DefeatNoInfluence,
-        DefeatTimeOut
+        DefeatNoInfluence
     }
 }
 

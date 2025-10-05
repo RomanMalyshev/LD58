@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: EventsPool_ 1
   m_EditorClassIdentifier: Assembly-CSharp::Events.EventsPool
   PoolType: 1
-  Events:
-  - {fileID: 0}
+  Events: []

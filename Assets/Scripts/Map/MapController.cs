@@ -94,10 +94,16 @@ namespace Map
                 {
                     var position =occupiedTile.GetTilePosition();
                     var neighborCoords = new Vector2Int(position.y, position.z) + offset;
-                    if (_coordToTiles.ContainsKey(neighborCoords) && !_coordToTiles[neighborCoords].IsOccupied)
+                    var neighborTile = _coordToTiles.ContainsKey(neighborCoords) ? _coordToTiles[neighborCoords] : null;
+                    
+                    // Check if tile exists, is not occupied, and can be occupied
+                    if (neighborTile != null && 
+                        !neighborTile.IsOccupied && 
+                        neighborTile.Config != null && 
+                        neighborTile.Config.CanBeOccupied)
                     {
-                        _coordToTiles[neighborCoords].SetReadyToOccupy(true);
-                        _availableForOccupyTiles.Add(_coordToTiles[neighborCoords]);
+                        neighborTile.SetReadyToOccupy(true);
+                        _availableForOccupyTiles.Add(neighborTile);
                     }
                 }
             }

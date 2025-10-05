@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 002af8805b699e14b9ac3dc976e6607d, type: 3}
-  m_Name: Event_
+  m_Name: drought_01
   m_EditorClassIdentifier: Assembly-CSharp::Events.EventData
-  EventID: 1
-  EventName: EVENT !!!
-  EventDescription: 
+  EventID: drought_01
+  EventName: "\u0417\u0430\u0441\u0443\u0445\u0430"
+  EventDescription: "\u0421\u0438\u043B\u044C\u043D\u0430\u044F \u0437\u0430\u0441\u0443\u0445\u0430
+    \u043F\u043E\u0440\u0430\u0437\u0438\u043B\u0430 \u0432\u0430\u0448\u0438 \u043F\u043E\u043B\u044F."
   Type: 0
   RequiredTileType: 0
   Choices:
-  - ChoiceText: Accept
+  - ChoiceText: Continue
     ChoiceDescription: HEu
     RequirePower: 0
     RequireGold: 0
@@ -38,29 +39,9 @@ MonoBehaviour:
       ConvertShaftToGold: 0
     IsBattle: 0
     BattleDifficulty: 5
-  - ChoiceText: Decline
-    ChoiceDescription: 
-    RequirePower: 0
-    RequireGold: 0
-    RequireWood: 0
-    RequireMetal: 0
-    Effect:
-      InfluenceChange: 0
-      PowerChange: 0
-      FoodChange: 0
-      WoodChange: 0
-      GoldChange: 0
-      MetalChange: 0
-      LoseTile: 0
-      RandomResourceBonus: 0
-      RandomResourceAmount: 5
-      RandomInfluenceChange: 0
-      ConvertShaftToGold: 0
-    IsBattle: 0
-    BattleDifficulty: 5
-  IsPassiveEvent: 0
+  IsPassiveEvent: 1
   PassiveEffect:
-    InfluenceChange: 0
+    InfluenceChange: 10
     PowerChange: 0
     FoodChange: 0
     WoodChange: 0

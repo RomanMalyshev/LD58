@@ -105,11 +105,6 @@ namespace Model
             set
             {
                 _tilesCaptured = value;
-                // Check for influence restoration every 3 tiles
-                if (_tilesCaptured > 0 && _tilesCaptured % 3 == 0)
-                {
-                    Influence += 1;
-                }
             }
         }
 
