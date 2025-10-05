@@ -11,8 +11,6 @@ namespace Model.Map
         public event Action<Vector2Int, bool> OnTileOccupiedChanged;
         public event Action<Vector2Int, bool> OnTileReadyToOccupyChanged;
 
-        // Для гексагональной сетки (hex cube coordinates)
-        // Соответствует Vector3Int смещениям из ProtoTiles, но берем только y и z компоненты
         private readonly Vector2Int[] _neighborOffsets = new[]
         {
             new Vector2Int(1, -1),   // (0, 1, -1)
@@ -45,7 +43,6 @@ namespace Model.Map
 
         private void UpdateReadyToOccupyStates()
         {
-            // Сначала сбрасываем все состояния readyToOccupy
             foreach (var tile in Tiles)
             {
                 if (!tile.Value.IsOccupied)
@@ -61,7 +58,6 @@ namespace Model.Map
                 }
                 else
                 {
-                    // Занятые клетки не могут быть ready to occupy
                     if (tile.Value.IsReadyToOccupy)
                     {
                         tile.Value.SetReadyToOccupy(false);

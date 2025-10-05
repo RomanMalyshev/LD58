@@ -5,12 +5,14 @@ using Model;
 using Model.Map;
 using View.Map;
 using Presenters;
+using UI;
 
 public class GameFlow : MonoBehaviour
 {
     [SerializeField] private RedBjorn.ProtoTiles.MapSettings _mapEditorSettings;
     [SerializeField] private RedBjorn.ProtoTiles.MapView _mapEditorView;
-
+    [SerializeField] private Hud _hud;
+    
     private StateMachine _stateMachine;
     private StartTurn _startTurn;
     private RandomEvent _randomEvent;
@@ -30,7 +32,6 @@ public class GameFlow : MonoBehaviour
         _playerModel = new Player();
 
         _mapModel = MapEditorToGameMap.GetMapModel(_mapEditorSettings, _mapEditorView);
-        Debug.Log(_mapEditorView.Tiles.Count);
         _mapView = new MapView(_mapEditorView.Tiles);
         _mapPresenter = new MapPresenter(_mapModel, _mapView);
 
