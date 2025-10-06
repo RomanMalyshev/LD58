@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Map;
 using Model;
 using State_Machine;
@@ -66,8 +67,14 @@ namespace GameStates
             }
 
             _currentEvent = _eventManager.GetRandomGlobalEvent();
-            
+
             if (_currentEvent == null)
+            {
+                _eventCompleted = true;
+                return;
+            }
+
+            if (occupiedTiles.All(it => it.TileType != _currentEvent.RequiredTileType))
             {
                 _eventCompleted = true;
                 return;
@@ -89,7 +96,7 @@ namespace GameStates
         private void HandlePassiveEvent()
         {
             string message = $"{_currentEvent.EventName}\n{_currentEvent.EventDescription}";
-            
+
             if (_currentEvent.PassiveEffect != null)
             {
                 _currentEvent.PassiveEffect.Apply(_player, _affectedTile, _map);
@@ -102,7 +109,7 @@ namespace GameStates
         private void ShowEventChoices()
         {
             string message = $"{_currentEvent.EventName}\n{_currentEvent.EventDescription}";
-            
+
             string acceptLabel = _currentEvent.Choices[0] != null ? _currentEvent.Choices[0].ChoiceText : "Accept";
             string declineLabel = _currentEvent.Choices[1] != null ? _currentEvent.Choices[1].ChoiceText : "Decline";
 
@@ -148,16 +155,19 @@ namespace GameStates
                 Debug.Log("Not enough Power!");
                 return;
             }
+
             if (choice.RequireGold > 0 && _player.Gold < choice.RequireGold)
             {
                 Debug.Log("Not enough Gold!");
                 return;
             }
+
             if (choice.RequireWood > 0 && _player.Wood < choice.RequireWood)
             {
                 Debug.Log("Not enough Wood!");
                 return;
             }
+
             if (choice.RequireMetal > 0 && _player.Metal < choice.RequireMetal)
             {
                 Debug.Log("Not enough Metal!");

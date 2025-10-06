@@ -24,6 +24,9 @@ namespace Events
         [Header("Passive Effect (no choice)")]
         public bool IsPassiveEvent = false;
         public EventEffect PassiveEffect;
+
+        [Range(0,5)]
+        public int Weight;
     }
 
     public enum EventType

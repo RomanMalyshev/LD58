@@ -12,6 +12,10 @@ namespace Events
         [Header("Events in Pool")]
         public List<EventData> Events = new List<EventData>();
 
+        
+        [Range(0f,1f)]
+        public float Chance;
+        
         public EventData GetRandomEvent(string lastEventID = "")
         {
             if (Events == null || Events.Count == 0)

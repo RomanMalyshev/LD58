@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Map;
 
@@ -21,39 +22,55 @@ namespace Events
             _campEventsPool = campPool;
         }
 
+        private int[] _randomWeighList = new int[] { 0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4 };
+
         public EventData GetRandomGlobalEvent()
         {
             if (_globalEventsPool == null) return null;
+
+            if (Random.Range(0f, 1f) > _globalEventsPool.Chance) return null;
+
+            var randomWeight = _randomWeighList[Random.Range(0, _randomWeighList.Length)];
+            var allEventWithRandomWeight =
+                _globalEventsPool.Events.Where(it => it.Weight == randomWeight).ToList();
+            Debug.Log($"{allEventWithRandomWeight.Count} {randomWeight}");
+            if (allEventWithRandomWeight.Count == 0) return null;
+            var randomEvent = allEventWithRandomWeight[Random.Range(0, allEventWithRandomWeight.Count)];
             
-            var evt = _globalEventsPool.GetRandomEvent(_lastGlobalEventID);
+            var evt = randomEvent;
+
+            Debug.Log($"selected event{evt.EventName}");
             if (evt != null)
             {
                 _lastGlobalEventID = evt.EventID;
             }
+
             return evt;
         }
 
         public EventData GetRandomTavernEvent()
         {
             if (_tavernEventsPool == null) return null;
-            
+
             var evt = _tavernEventsPool.GetRandomEvent(_lastTavernEventID);
             if (evt != null)
             {
                 _lastTavernEventID = evt.EventID;
             }
+
             return evt;
         }
 
         public EventData GetRandomCampEvent()
         {
             if (_campEventsPool == null) return null;
-            
+
             var evt = _campEventsPool.GetRandomEvent(_lastCampEventID);
             if (evt != null)
             {
                 _lastCampEventID = evt.EventID;
             }
+
             return evt;
         }
 
@@ -87,4 +104,3 @@ namespace Events
         }
     }
 }
-

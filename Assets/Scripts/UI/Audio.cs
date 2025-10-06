@@ -36,7 +36,7 @@ public class Audio : MonoBehaviour, IPointerEnterHandler
     {
         if ((hoverSound != null) && (trigger == null))
         {
-            Debug.Log("Навелось");
+//            Debug.Log("Навелось");
             PlaySound();
         }
             
