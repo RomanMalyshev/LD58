@@ -3,14 +3,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(AudioSource))]
-public class Audio : MonoBehaviour, IPointerEnterHandler
+public class Audio : MonoBehaviour, IPointerDownHandler
 {
-    [Header("Sound Settings")]
-    [Tooltip("Аудиоклип, который будет проигрываться при наведении курсора")]
+    [Header("Sound Settings")] [Tooltip("Аудиоклип, который будет проигрываться при наведении курсора")]
     public AudioClip hoverSound;
 
-    [Tooltip("Громкость звука")]
-    [Range(0f, 1f)]
+    [Tooltip("Громкость звука")] [Range(0f, 1f)]
     public float volume = 0.8f;
 
     private AudioSource audioSource;
@@ -21,7 +19,7 @@ public class Audio : MonoBehaviour, IPointerEnterHandler
         //trigger = GetComponentInChildren<Hud>();
         if (trigger != null)
             trigger.OnMassageChange += PlaySound;
-        
+
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
@@ -32,19 +30,18 @@ public class Audio : MonoBehaviour, IPointerEnterHandler
         audioSource.loop = false;
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+
+    private void PlaySound()
+    {
+        audioSource.PlayOneShot(hoverSound, volume);
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
     {
         if ((hoverSound != null) && (trigger == null))
         {
 //            Debug.Log("Навелось");
             PlaySound();
         }
-            
-        
     }
-
-    private void PlaySound()
-    {
-        audioSource.PlayOneShot(hoverSound, volume);
-    } 
 }

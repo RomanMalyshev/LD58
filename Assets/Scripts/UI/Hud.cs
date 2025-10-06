@@ -3,6 +3,7 @@ using Model;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 namespace UI
 {
@@ -40,13 +41,62 @@ namespace UI
 
         [SerializeField] private GameObject TileInfoPanel;
         [SerializeField] private TMP_Text TileInfoText;
+        [SerializeField] private Vector2 TileInfoOffset = new Vector2(10, 10);
 
         public event Action OnMassageChange;
+
+        private RectTransform _tileInfoRectTransform;
+        private Canvas _canvas;
 
         private void Start()
         {
             PopupAccept.onClick.AddListener(() => OnPopupAccept?.Invoke());
             PopupDecline.onClick.AddListener(() => OnPopupDecline?.Invoke());
+
+            if (TileInfoPanel != null)
+            {
+                _tileInfoRectTransform = TileInfoPanel.GetComponent<RectTransform>();
+                _canvas = GetComponentInParent<Canvas>();
+            }
+        }
+
+        private void Update()
+        {
+            if (TileInfoPanel != null && TileInfoPanel.activeSelf && _tileInfoRectTransform != null)
+            {
+                UpdateTileInfoPosition();
+            }
+        }
+
+        private void UpdateTileInfoPosition()
+        {
+            Vector2 mousePosition = Input.mousePosition;
+            
+            if (_canvas != null && _tileInfoRectTransform != null)
+            {
+                // Обновляем layout для получения актуальной высоты
+                LayoutRebuilder.ForceRebuildLayoutImmediate(_tileInfoRectTransform);
+                
+                // Получаем актуальную высоту панели после обновления layout
+                float panelHeight = _tileInfoRectTransform.rect.height;
+                
+                // Корректируем оффсет с учётом высоты панели (позиционируем от нижнего края)
+                Vector2 adjustedOffset = new Vector2(TileInfoOffset.x, TileInfoOffset.y + panelHeight);
+                
+                if (_canvas.renderMode == RenderMode.ScreenSpaceOverlay)
+                {
+                    _tileInfoRectTransform.position = mousePosition + adjustedOffset;
+                }
+                else
+                {
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                        _canvas.transform as RectTransform,
+                        mousePosition,
+                        _canvas.worldCamera,
+                        out Vector2 localPoint);
+                    _tileInfoRectTransform.localPosition = localPoint + adjustedOffset;
+                }
+            }
         }
 
         public void UpdateResources(int influence, int power, int food, int gold, int metal, int wood)
@@ -92,6 +142,13 @@ namespace UI
             {
                 TileInfoPanel.SetActive(true);
                 TileInfoText.text = info;
+                
+                // Принудительно обновляем layout чтобы получить актуальный размер
+                Canvas.ForceUpdateCanvases();
+                if (_tileInfoRectTransform != null)
+                {
+                    LayoutRebuilder.ForceRebuildLayoutImmediate(_tileInfoRectTransform);
+                }
             }
         }
 

@@ -6,6 +6,7 @@
         Field,
         Village,
         EnemyCastle,
+        EnemyCastle2,
         PlayerCastle ,
         Forest,
         Mine,
