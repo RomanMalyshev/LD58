@@ -19,6 +19,7 @@ namespace Map
         [SerializeField] private Color _occupiedColor = Color.red;
         [SerializeField] private Color _hoverColor = Color.yellow;
         [SerializeField] private Color _readyToOccupy = Color.green;
+        [SerializeField] private Color _readyToUpgrade = Color.purple;
         [SerializeField] private Color _selectedColor = Color.blue;
 
         [SerializeField] private Color _normalTileColor = new(0.8f, 0.8f, 0.8f, 0.85f);
@@ -33,6 +34,7 @@ namespace Map
         private bool _isHovered;
         private bool _isReadyToOccupy;
         private bool _isSelected;
+        private bool _isReadyToUpgrade;
         private bool _isInteractable = true;
         private int _upgradeLevel = 0;
         private TileConfig _config;
@@ -144,22 +146,19 @@ namespace Map
             }
             else if (IsOccupied)
             {
-                SetTileColor(_normalTileColor);
-                _spriteRenderer.color = _occupiedColor;
+                SetTileColor(_isReadyToUpgrade ? _normalTileColor : Color.white);
+                _spriteRenderer.color = _isReadyToUpgrade ? _readyToUpgrade : _occupiedColor;
             }
             else if (_isReadyToOccupy)
             {
                 SetTileColor(_normalTileColor);
-                _spriteRenderer.color = _readyToOccupy;
+                _spriteRenderer.color = _isReadyToUpgrade ? _readyToUpgrade : _readyToOccupy;
             }
             else
             {
                 SetTileColor(_normalTileColor);
                 _spriteRenderer.color = _normalColor;
             }
-
-
-            Debug.Log(_spriteRenderer.color);
         }
 
         public void SetReadyToOccupy(bool isReady)
@@ -220,6 +219,14 @@ namespace Map
         public void ResetUpgradeLevel()
         {
             _upgradeLevel = 0;
+        }
+
+        public void SetReadyToUpgrade(bool state)
+        {
+            _isReadyToUpgrade = state;
+            UpdateVisual();
+
+            Debug.Log($"Ready to upgrade{state} {_spriteRenderer.color}  ");
         }
     }
 }

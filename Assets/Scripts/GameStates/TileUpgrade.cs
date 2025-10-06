@@ -86,11 +86,11 @@ namespace GameStates
         {
             foreach (var tile in _upgradeableTiles)
             {
-                tile.SetInteractable(true);
-                tile.SetReadyToOccupy(true); // Визуально подсвечиваем тайл
+                tile.SetInteractable(true);// Визуально подсвечиваем тайл
                 tile.OnClicked += () => OnTileClicked(tile);
                 tile.OnHoverEnter += () => OnTileHoverEnter(tile);
                 tile.OnHoverExit += () => OnTileHoverExit(tile);
+                tile.SetReadyToUpgrade(true); 
             }
         }
 
@@ -99,9 +99,7 @@ namespace GameStates
             foreach (var tile in _upgradeableTiles)
             {
                 tile.SetInteractable(false);
-                tile.SetReadyToOccupy(false); // Убираем подсветку
-                // Note: В идеале нужно отписаться от событий, но для упрощения
-                // полагаемся на то, что Exit очистит состояние
+                tile.SetReadyToUpgrade(false); 
             }
         }
 

@@ -1,4 +1,5 @@
 using System;
+using Model;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +12,7 @@ namespace UI
         public Action OnPopupAccept;
 
         [SerializeField] private CanvasGroup _canvasGroup;
-        
+
         [SerializeField] private TMP_Text Influence;
         [SerializeField] private TMP_Text Power;
         [SerializeField] private TMP_Text Food;
@@ -63,7 +64,8 @@ namespace UI
             if (CurrentTurn != null)
                 CurrentTurn.text = $"Turn: {currentTurn}";
             if (CapturedCastles != null)
-                CapturedCastles.text = $"Castles: {capturedCastles}";
+                CapturedCastles.text =
+                    $"Your majeste \nyou need to collect  \n{GameConditionsChecker.CASTLES_TO_WIN - capturedCastles}  enemy castle's\n";
         }
 
         public void ShowPopup(string message, string accept, string decline)
