@@ -144,10 +144,12 @@ namespace Map
             }
             else if (IsOccupied)
             {
+                SetTileColor(_normalTileColor);
                 _spriteRenderer.color = _occupiedColor;
             }
             else if (_isReadyToOccupy)
             {
+                SetTileColor(_normalTileColor);
                 _spriteRenderer.color = _readyToOccupy;
             }
             else

@@ -186,12 +186,12 @@ namespace GameStates
             var config = _selectedTile.Config;
             
             string message = $"Capture {config.DisplayName}?\n\n";
-            message += $"Cost: {config.InfluenceCost} Influence";
+            message += $"Cost: {config.InfluenceCost} <Sprite index=0>";
             
-            if (config.PowerCost > 0) message += $", {config.PowerCost} Power";
-            if (config.WoodCost > 0) message += $", {config.WoodCost} Wood";
-            if (config.GoldCost > 0) message += $", {config.GoldCost} Gold";
-            if (config.MetalCost > 0) message += $", {config.MetalCost} Metal";
+            if (config.PowerCost > 0) message += $", {config.PowerCost} <Sprite index=5>";
+            if (config.WoodCost > 0) message += $", {config.WoodCost} <Sprite index=1>";
+            if (config.GoldCost > 0) message += $", {config.GoldCost} <Sprite index=3>";
+            if (config.MetalCost > 0) message += $", {config.MetalCost} <Sprite index=4>";
             
             // Immediate rewards
             bool hasRewards = config.RewardInfluence != 0 || config.RewardPower != 0 || 
@@ -201,12 +201,12 @@ namespace GameStates
             if (hasRewards)
             {
                 message += "\n\nImmediate Rewards:\n";
-                if (config.RewardInfluence != 0) message += $"Influence: {config.RewardInfluence:+0;-0}\n";
-                if (config.RewardPower != 0) message += $"Power: {config.RewardPower:+0;-0}\n";
-                if (config.RewardFood != 0) message += $"Food: {config.RewardFood:+0;-0}\n";
-                if (config.RewardWood != 0) message += $"Wood: {config.RewardWood:+0;-0}\n";
-                if (config.RewardGold != 0) message += $"Gold: {config.RewardGold:+0;-0}\n";
-                if (config.RewardMetal != 0) message += $"Metal: {config.RewardMetal:+0;-0}\n";
+                if (config.RewardInfluence != 0) message += $"<Sprite index=0> {config.RewardInfluence:+0;-0}\n";
+                if (config.RewardPower != 0) message += $"<Sprite index=5> {config.RewardPower:+0;-0}\n";
+                if (config.RewardFood != 0) message += $"<Sprite index=2> {config.RewardFood:+0;-0}\n";
+                if (config.RewardWood != 0) message += $"<Sprite index=1> {config.RewardWood:+0;-0}\n";
+                if (config.RewardGold != 0) message += $"<Sprite index=3> {config.RewardGold:+0;-0}\n";
+                if (config.RewardMetal != 0) message += $"<Sprite index=4> {config.RewardMetal:+0;-0}\n";
             }
             
             // Passive income
@@ -217,11 +217,11 @@ namespace GameStates
             if (hasIncome)
             {
                 message += "\n\nIncome per Turn:\n";
-                if (config.IncomeFood != 0) message += $"Food: {config.IncomeFood:+0;-0}\n";
-                if (config.IncomePower != 0) message += $"Power: {config.IncomePower:+0;-0}\n";
-                if (config.IncomeWood != 0) message += $"Wood: {config.IncomeWood:+0;-0}\n";
-                if (config.IncomeGold != 0) message += $"Gold: {config.IncomeGold:+0;-0}\n";
-                if (config.IncomeMetal != 0) message += $"Metal: {config.IncomeMetal:+0;-0}\n";
+                if (config.IncomeFood != 0) message += $"<Sprite index=2> {config.IncomeFood:+0;-0}\n";
+                if (config.IncomePower != 0) message += $"<Sprite index=5> {config.IncomePower:+0;-0}\n";
+                if (config.IncomeWood != 0) message += $"<Sprite index=1> {config.IncomeWood:+0;-0}\n";
+                if (config.IncomeGold != 0) message += $"<Sprite index=3> {config.IncomeGold:+0;-0}\n";
+                if (config.IncomeMetal != 0) message += $"<Sprite index=4> {config.IncomeMetal:+0;-0}\n";
             }
 
             _hud.ShowPopup(message, "Yes", "No");
