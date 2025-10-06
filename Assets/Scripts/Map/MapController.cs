@@ -84,6 +84,7 @@ namespace Map
                         neighborTile.Config != null && 
                         neighborTile.Config.CanBeOccupied)
                     {
+                        
                         neighborTile.SetReadyToOccupy(true);
                         _availableForOccupyTiles.Add(neighborTile);
                     }

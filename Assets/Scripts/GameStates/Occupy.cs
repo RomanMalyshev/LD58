@@ -52,7 +52,7 @@ namespace GameStates
 
         public void Exit()
         {
-            _map.SetTilesForOccupyInteractionState(false);
+            _map.SetTilesInteractionState(false);
             UnsubscribeFromTileClicks();
             
             // Deselect tile on exit

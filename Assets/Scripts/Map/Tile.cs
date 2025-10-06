@@ -30,7 +30,6 @@ namespace Map
         [SerializeField] private MouseTrigger _mouseTrigger;
         [SerializeField] private SpriteRenderer _spriteRenderer;
 
-        private bool _isOccupied;
         private bool _isHovered;
         private bool _isReadyToOccupy;
         private bool _isSelected;
@@ -120,7 +119,7 @@ namespace Map
 
         public void SetOccupiedVisual(bool isOccupied)
         {
-            _isOccupied = isOccupied;
+            IsOccupied = isOccupied;
             UpdateVisual();
         }
 
@@ -144,7 +143,7 @@ namespace Map
                 SetTileColor(Color.white);
                 _spriteRenderer.color = _selectedColor;
             }
-            else if (_isOccupied)
+            else if (IsOccupied)
             {
                 _spriteRenderer.color = _occupiedColor;
             }

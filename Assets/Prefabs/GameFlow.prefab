@@ -51,4 +51,4 @@ MonoBehaviour:
   _tilesConfig: {fileID: 11400000, guid: bca0ee931d4dedf4286b7b585193bb2c, type: 2}
   _globalEventsPool: {fileID: 11400000, guid: 979ab8649c4c8df478d9b752ade3b110, type: 2}
   _tavernEventsPool: {fileID: 11400000, guid: db791e35b0fe19049a263e201e20444c, type: 2}
-  _campEventsPool: {fileID: 11400000, guid: 5419c22a590b1f14495b9d20dc5abef4, type: 2}
+  _campEventsPool: {fileID: 11400000, guid: 79b55fd4597b10542978ef67a7b4f142, type: 2}
