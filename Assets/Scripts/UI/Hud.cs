@@ -30,6 +30,8 @@ namespace UI
         [SerializeField] private GameObject TileInfoPanel;
         [SerializeField] private TMP_Text TileInfoText;
 
+        public event Action OnMassageChange;
+
         private void Start()
         {
             PopupAccept.onClick.AddListener(() => OnPopupAccept?.Invoke());
@@ -63,6 +65,8 @@ namespace UI
             PopupMessage.text = message;
             PopupAcceptLabel.text = accept;
             PopupDeclineLabel.text = decline;
+            
+            OnMassageChange?.Invoke();
         }
 
         public void HidePopup()

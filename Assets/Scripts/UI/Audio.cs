@@ -1,3 +1,4 @@
+using UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -13,9 +14,14 @@ public class Audio : MonoBehaviour, IPointerEnterHandler
     public float volume = 0.8f;
 
     private AudioSource audioSource;
+    [SerializeField] private Hud trigger;
 
-    void Awake()
+    void Start()
     {
+        //trigger = GetComponentInChildren<Hud>();
+        if (trigger != null)
+            trigger.OnMassageChange += PlaySound;
+        
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
         {
@@ -28,9 +34,17 @@ public class Audio : MonoBehaviour, IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (hoverSound != null)
+        if ((hoverSound != null) && (trigger == null))
         {
-            audioSource.PlayOneShot(hoverSound, volume);
+            Debug.Log("Навелось");
+            PlaySound();
         }
+            
+        
     }
+
+    private void PlaySound()
+    {
+        audioSource.PlayOneShot(hoverSound, volume);
+    } 
 }
