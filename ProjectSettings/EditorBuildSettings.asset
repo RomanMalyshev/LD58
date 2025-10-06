@@ -11,13 +11,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/GamePlay Test.unity
     guid: f8ac11f9e08cd1242a2f194a0a299643
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MapCreator.unity
     guid: c7aef77a3cefe1145bf0cf4b9f246271
   - enabled: 0
     path: Assets/Scenes/TestLevelMapCreator.unity
     guid: 9740cd1ea9c2344439eed6014611a7cb
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Reales_Map_Creator.unity
     guid: e93b279d5e00ed744b7b1977c37c74d9
   m_configObjects:
