@@ -18,6 +18,12 @@ MonoBehaviour:
     units of gold
 
     -3 <sprite index=1>'
+  RequirePower: 0
+  RequireGold: 0
+  RequireWood: 6
+  RequireMetal: 0
+  RequireFood: 0
+  RequireInfluence: 0
   Type: 0
   RequiredTileType: 5
   Choices:

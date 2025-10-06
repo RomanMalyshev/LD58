@@ -17,10 +17,16 @@ MonoBehaviour:
   EventDescription: "Sire, a lone knight roams our borders \u2014 his armor bears
     many scars of battle. He offers his blade to those who would have him. Shall
     we take him into your service?"
+  RequirePower: 0
+  RequireGold: 5
+  RequireWood: 0
+  RequireMetal: 0
+  RequireFood: 0
+  RequireInfluence: 0
   Type: 0
   RequiredTileType: 4
   Choices:
-  - ChoiceText: Hire the knight
+  - ChoiceText: Hire the knight \n - 5 <sprite index=3>, 3 <sprite index=5>
     ChoiceDescription: '- 5 <sprite index=3>, 3 <sprite index=5>'
     RequirePower: -3
     RequireGold: 5

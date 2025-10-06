@@ -18,6 +18,12 @@ MonoBehaviour:
     3 units of iron
 
     -3 <sprite index=4>'
+  RequirePower: 0
+  RequireGold: 0
+  RequireWood: 0
+  RequireMetal: 6
+  RequireFood: 0
+  RequireInfluence: 0
   Type: 0
   RequiredTileType: 7
   Choices:

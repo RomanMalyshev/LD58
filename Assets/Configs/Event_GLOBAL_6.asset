@@ -17,10 +17,16 @@ MonoBehaviour:
   EventDescription: My lord, the workers in one of your field have gone on strike.
     They demand rest. You may dismiss them and hire new hands, or allow the current
     workers some time to recover.
+  RequirePower: 0
+  RequireGold: 0
+  RequireWood: 0
+  RequireMetal: 0
+  RequireFood: 10
+  RequireInfluence: 0
   Type: 0
   RequiredTileType: 1
   Choices:
-  - ChoiceText: Grant them time to rest
+  - ChoiceText: Grant them time to rest \n - 5 <sprite index=2>
     ChoiceDescription: '- 5 <sprite index=2>'
     RequirePower: 0
     RequireGold: 0
@@ -42,7 +48,7 @@ MonoBehaviour:
       ConvertShaftToGold: 0
     IsBattle: 0
     BattleDifficulty: 5
-  - ChoiceText: Dismiss the rebels and hire new workers
+  - ChoiceText: Dismiss the rebels and hire new workers \n - 3 <sprite index=3>
     ChoiceDescription: '- 3 <sprite index=3>'
     RequirePower: 0
     RequireGold: 3

@@ -17,10 +17,17 @@ MonoBehaviour:
   EventDescription: My lord, a troupe of wandering minstrels has arrived at the castle
     gates. If we grant them shelter and a warm meal, they may spread word of your
     generosity across the lands
+  RequirePower: 0
+  RequireGold: 1
+  RequireWood: 0
+  RequireMetal: 0
+  RequireFood: 7
+  RequireInfluence: 0
   Type: 0
   RequiredTileType: 4
   Choices:
-  - ChoiceText: Welcome the minstrels into the castle
+  - ChoiceText: Welcome the minstrels into the castle \n - 5 <sprite index=3>, -3
+      <sprite index=5>, +3 <sprite index=0>
     ChoiceDescription: '- 5 <sprite index=3>, -3 <sprite index=5>, +3 <sprite index=0>'
     RequirePower: 0
     RequireGold: 1
