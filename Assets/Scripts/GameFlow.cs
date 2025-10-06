@@ -37,8 +37,6 @@ public class GameFlow : MonoBehaviour
         _map = new(_mapEditorSettings, _mapEditorView, _tilesConfig);
         if (_map.MaxRadius > 5)
         {
-            
-            
             _map.HideAtRadius(_map.MaxRadius-1);
             _map.HideAtRadius(_map.MaxRadius-2);
         }
@@ -68,6 +66,11 @@ public class GameFlow : MonoBehaviour
     private void Update()
     {
         _stateMachine.Execute();
+        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            RestartGame();
+        }
     }
 
     private void InitializeStateMachine()
@@ -120,12 +123,7 @@ public class GameFlow : MonoBehaviour
             _stateMachine.ChangeState(_endGame);
         };
 
-        _endGame.OnRestart += () =>
-        {
-            RestartGame();
-        };
-        
-        
+        _endGame.OnRestart += RestartGame;
     }
 
     private void RestartGame()
@@ -139,10 +137,10 @@ public class GameFlow : MonoBehaviour
             _playerStartConfig.Metal,
             _playerStartConfig.Wood
         );
-        
+
         // Reset map to initial state
         _map.ResetMap();
-        
+
         // Change state to enter game
         _stateMachine.ChangeState(_enterGame);
     }
