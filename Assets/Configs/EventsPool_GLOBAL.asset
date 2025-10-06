@@ -14,5 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Events.EventsPool
   PoolType: 0
   Events:
-  - {fileID: 11400000, guid: 9a85ca42236fe5c4691ca883af74a5b6, type: 2}
+  - {fileID: 11400000, guid: 54e0f8e1c05a0e64fbbda1e005d38786, type: 2}
+  - {fileID: 11400000, guid: 132e8b6ec2547514da554cc97a005e2c, type: 2}
+  - {fileID: 11400000, guid: e9a443da4752ef1428bd3add3375a528, type: 2}
+  - {fileID: 11400000, guid: b1526dc0d8cd70646ae167ddffc079e3, type: 2}
+  - {fileID: 11400000, guid: 1815d42b09c504d4d9a2228ed63318e5, type: 2}
+  - {fileID: 11400000, guid: e5a3613c0f977c74ebbac54c1eae5bfd, type: 2}
+  - {fileID: 11400000, guid: 0dcb961bf1685654481bea1cc6f78eee, type: 2}
+  - {fileID: 11400000, guid: 6eebe8b6905afc74480c6ea6674e46dd, type: 2}
+  - {fileID: 11400000, guid: 7e108e9d8ee52aa40af0df58f2a86adb, type: 2}
   Chance: 1

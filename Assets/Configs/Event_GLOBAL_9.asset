@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002af8805b699e14b9ac3dc976e6607d, type: 3}
+  m_Name: Event_GLOBAL_9
+  m_EditorClassIdentifier: Assembly-CSharp::Events.EventData
+  EventID: Global_9
+  EventName: 
+  EventDescription: My lord, a troupe of wandering minstrels has arrived at the castle
+    gates. If we grant them shelter and a warm meal, they may spread word of your
+    generosity across the lands
+  Type: 0
+  RequiredTileType: 4
+  Choices:
+  - ChoiceText: Welcome the minstrels into the castle
+    ChoiceDescription: '- 5 <sprite index=3>, -3 <sprite index=5>, +3 <sprite index=0>'
+    RequirePower: 0
+    RequireGold: 1
+    RequireWood: 0
+    RequireMetal: 0
+    RequireFood: 5
+    RequireInfluence: -3
+    Effect:
+      InfluenceChange: 0
+      PowerChange: 0
+      FoodChange: 0
+      WoodChange: 0
+      GoldChange: 0
+      MetalChange: 0
+      LoseTile: 0
+      RandomResourceBonus: 0
+      RandomResourceAmount: 5
+      RandomInfluenceChange: 0
+      ConvertShaftToGold: 0
+    IsBattle: 0
+    BattleDifficulty: 5
+  - ChoiceText: "Turn them away \u2014 we have no time for entertainers"
+    ChoiceDescription: 
+    RequirePower: 0
+    RequireGold: 0
+    RequireWood: 0
+    RequireMetal: 0
+    RequireFood: 0
+    RequireInfluence: 0
+    Effect:
+      InfluenceChange: 0
+      PowerChange: 0
+      FoodChange: 0
+      WoodChange: 0
+      GoldChange: 0
+      MetalChange: 0
+      LoseTile: 0
+      RandomResourceBonus: 0
+      RandomResourceAmount: 5
+      RandomInfluenceChange: 0
+      ConvertShaftToGold: 0
+    IsBattle: 0
+    BattleDifficulty: 5
+  IsPassiveEvent: 0
+  PassiveEffect:
+    InfluenceChange: 0
+    PowerChange: 0
+    FoodChange: 0
+    WoodChange: 0
+    GoldChange: 0
+    MetalChange: 0
+    LoseTile: 0
+    RandomResourceBonus: 0
+    RandomResourceAmount: 5
+    RandomInfluenceChange: 0
+    ConvertShaftToGold: 0
+  Weight: 1

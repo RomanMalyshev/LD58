@@ -22,7 +22,8 @@ namespace Events
             _campEventsPool = campPool;
         }
 
-        private int[] _randomWeighList = new int[] { 0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4 };
+        //private int[] _randomWeighList = new int[] { 0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4 };
+        
 
         public EventData GetRandomGlobalEvent()
         {
@@ -30,7 +31,7 @@ namespace Events
 
             if (Random.Range(0f, 1f) > _globalEventsPool.Chance) return null;
 
-            var randomWeight = _randomWeighList[Random.Range(0, _randomWeighList.Length)];
+            var randomWeight = 3;//_randomWeighList[Random.Range(0, _randomWeighList.Length)];
             var allEventWithRandomWeight =
                 _globalEventsPool.Events.Where(it => it.Weight == randomWeight).ToList();
             Debug.Log($"{allEventWithRandomWeight.Count} {randomWeight}");
