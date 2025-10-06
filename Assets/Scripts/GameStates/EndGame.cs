@@ -1,13 +1,15 @@
-﻿using State_Machine;
+﻿using System;
+using State_Machine;
 using UI;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Model;
 
 namespace GameStates
 {
     public class EndGame : IState
     {
+        public Action OnRestart;
+        
         private Hud _hud;
         private GameEndCondition _endCondition;
         private bool _waitingForRestart;
@@ -35,7 +37,7 @@ namespace GameStates
 
         public void Exit()
         {
-            _hud.OnPopupAccept -= OnRestart;
+            _hud.OnPopupAccept -= OnRestartClicked;
             _hud.HidePopup();
         }
 
@@ -60,19 +62,19 @@ namespace GameStates
             }
 
             _hud.ShowPopup(message, "Restart", null);
-            _hud.OnPopupAccept += OnRestart;
+            _hud.OnPopupAccept += OnRestartClicked;
             _waitingForRestart = true;
         }
 
-        private void OnRestart()
+        private void OnRestartClicked()
         {
             if (!_waitingForRestart) return;
             
             _waitingForRestart = false;
-            _hud.OnPopupAccept -= OnRestart;
+            _hud.OnPopupAccept -= OnRestartClicked;
             
-            // Reload current scene
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            // Trigger restart event instead of reloading scene
+            OnRestart?.Invoke();
         }
     }
 }

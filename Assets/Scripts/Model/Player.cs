@@ -117,5 +117,23 @@ namespace Model
         {
             OnGameStatsChanged?.Invoke(_currentTurn, _capturedCastles);
         }
+
+        public void ResetToDefault(int defaultInfluence, int defaultPower, int defaultFood, 
+                                   int defaultGold, int defaultMetal, int defaultWood)
+        {
+            _influence = defaultInfluence;
+            _power = defaultPower;
+            _food = defaultFood;
+            _gold = defaultGold;
+            _metal = defaultMetal;
+            _wood = defaultWood;
+            
+            _currentTurn = 1;
+            _capturedCastles = 0;
+            _tilesCaptured = 0;
+            
+            NotifyResourcesChanged();
+            NotifyGameStatsChanged();
+        }
     }
 }

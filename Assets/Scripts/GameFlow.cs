@@ -119,6 +119,32 @@ public class GameFlow : MonoBehaviour
             _endGame.SetEndCondition(condition);
             _stateMachine.ChangeState(_endGame);
         };
+
+        _endGame.OnRestart += () =>
+        {
+            RestartGame();
+        };
+        
+        
+    }
+
+    private void RestartGame()
+    {
+        // Reset player to initial state
+        _playerModel.ResetToDefault(
+            _playerStartConfig.Influence,
+            _playerStartConfig.Power,
+            _playerStartConfig.Food,
+            _playerStartConfig.Gold,
+            _playerStartConfig.Metal,
+            _playerStartConfig.Wood
+        );
+        
+        // Reset map to initial state
+        _map.ResetMap();
+        
+        // Change state to enter game
+        _stateMachine.ChangeState(_enterGame);
     }
 
     private void OnDestroy()

@@ -123,12 +123,14 @@ namespace Map
         public void OccupyTile(Vector2Int tileCoords)
         {
             _coordToTiles[tileCoords].SetOccupiedVisual(true);
+            _coordToTiles[tileCoords].IsOccupied = true;
             _occupiedTiles.Add(_coordToTiles[tileCoords]);
         }
 
         public void DeOccupyTile(Vector2Int tileCoords)
         {
             _coordToTiles[tileCoords].SetOccupiedVisual(false);
+            _coordToTiles[tileCoords].IsOccupied = false;
             _occupiedTiles.Remove(_coordToTiles[tileCoords]);
         }
 
@@ -153,6 +155,41 @@ namespace Map
         public Tile GetTileAt(Vector2Int coords)
         {
             return _coordToTiles.ContainsKey(coords) ? _coordToTiles[coords] : null;
+        }
+
+        public void ResetMap()
+        {
+            // Reset all tiles to unoccupied state
+            foreach (var tile in _occupiedTiles)
+            {
+                tile.SetOccupiedVisual(false);
+                tile.IsOccupied = false;
+            }
+            
+            // Reset all available for occupy tiles
+            foreach (var tile in _availableForOccupyTiles)
+            {
+                tile.SetReadyToOccupy(false);
+                tile.IsReadyToOccupy = false;
+            }
+            
+            // Clear collections
+            _occupiedTiles.Clear();
+            _availableForOccupyTiles.Clear();
+            _canBeUpgradeTiles.Clear();
+            
+            // Reset upgrade levels and state for all tiles
+            foreach (var tile in _coordToTiles.Values)
+            {
+                tile.SetOccupiedVisual(false);
+                tile.SetReadyToOccupyVisual(false);
+                tile.IsOccupied = false;
+                tile.IsReadyToOccupy = false;
+                tile.ResetUpgradeLevel();
+            }
+            
+            // Re-occupy center tile (player starting position)
+            OccupyTile(Vector2Int.zero);
         }
     
     }
