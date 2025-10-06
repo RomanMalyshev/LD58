@@ -34,37 +34,19 @@ namespace Map
         {
             _tilesConfig = tilesConfig;
             
-            MapEntity mapEntity = new MapEntity(mapEditorSettings, mapEditorView);
-            foreach (var tile in mapEntity.Tiles)
-            {
-                //TODO: create transfer function
-                //if (tile.Value.Preset.Id == "Forest")
-                //  mapModel.Tiles[new Vector2Int(tile.Key.y, tile.Key.z)] = new EmptyTile();
-            }
-            
             foreach (var tile in mapEditorView.Tiles)
             {
                 _coordToTiles[new Vector2Int(tile.Key.y, tile.Key.z)] = tile.Value;
                 
-                // Initialize tile config
                 var config = _tilesConfig.GetConfigByType(tile.Value.TileType);
                 if (config != null)
                 {
                     tile.Value.InitializeConfig(config);
                 }
-                
-                tile.Value.OnClicked += () =>
-                {
-                    
-                    
-                    
-                };
             }
 
             _radiusToTiles = mapEditorView.GetTilesByRadius(Vector3Int.zero);
-            Debug.Log(_radiusToTiles.Count);
             MaxRadius = _radiusToTiles.Count;
-            //player start with center tile
             OccupyTile(Vector2Int.zero);
         }
 
@@ -118,8 +100,7 @@ namespace Map
         {
             _radiusToTiles[radius].ForEach(tile => tile.gameObject.SetActive(true));
         }
-
-
+        
         public void OccupyTile(Vector2Int tileCoords)
         {
             _coordToTiles[tileCoords].SetOccupiedVisual(true);
