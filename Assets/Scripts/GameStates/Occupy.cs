@@ -108,7 +108,7 @@ namespace GameStates
             if (!tile.Config.CanBeOccupied)
             {
                 _hud.ShowPopup("This tile cannot be occupied!", "OK", null);
-                _hud.OnPopupAccept += () => { _hud.HidePopup(); };
+                _hud.OnPopupAccept += OnCannotOccupyTile;
                 return;
             }
 
@@ -122,6 +122,12 @@ namespace GameStates
             _selectedTile = tile;
             _selectedTile.SetSelected(true);
             ShowCaptureConfirmation();
+        }
+
+        private void OnCannotOccupyTile()
+        {
+            _hud.OnPopupAccept -= OnCannotOccupyTile;
+            _hud.HidePopup();
         }
 
         private void OnTileHoverEnter(Tile tile)
@@ -236,11 +242,25 @@ namespace GameStates
             if (!CanAffordTile(_selectedTile))
             {
                 _hud.ShowPopup("Not enough resources!", "OK", null);
-                _hud.OnPopupAccept += OnCancelCapture;
+                _hud.OnPopupAccept += OnNotEnoughResources;
                 return;
             }
 
             CaptureTile(_selectedTile);
+        }
+
+        private void OnNotEnoughResources()
+        {
+            _hud.OnPopupAccept -= OnNotEnoughResources;
+            _hud.HidePopup();
+            
+            // Deselect tile
+            if (_selectedTile != null)
+            {
+                _selectedTile.SetSelected(false);
+            }
+            
+            _selectedTile = null;
         }
 
         private void OnCancelCapture()
@@ -325,7 +345,7 @@ namespace GameStates
                     case 2: _player.Metal += 5; break;
                 }
                 _hud.ShowPopup("Chest opened! +5 random resource", "OK", null);
-                _hud.OnPopupAccept += () => { _captureCompleted = true; };
+                _hud.OnPopupAccept += OnChestOpened;
             }
             else if (tile.Config.TriggersTavernEvent)
             {
@@ -339,6 +359,13 @@ namespace GameStates
             {
                 _captureCompleted = true;
             }
+        }
+
+        private void OnChestOpened()
+        {
+            _hud.OnPopupAccept -= OnChestOpened;
+            _hud.HidePopup();
+            _captureCompleted = true;
         }
 
         private void TriggerTavernEvent()
@@ -388,25 +415,25 @@ namespace GameStates
                 if (choice.RequirePower > 0 && _player.Power < choice.RequirePower)
                 {
                     _hud.ShowPopup("Not enough Power!", "OK", null);
-                    _hud.OnPopupAccept += () => { _captureCompleted = true; };
+                    _hud.OnPopupAccept += OnEventRequirementFailed;
                     return;
                 }
                 if (choice.RequireGold > 0 && _player.Gold < choice.RequireGold)
                 {
                     _hud.ShowPopup("Not enough Gold!", "OK", null);
-                    _hud.OnPopupAccept += () => { _captureCompleted = true; };
+                    _hud.OnPopupAccept += OnEventRequirementFailed;
                     return;
                 }
                 if (choice.RequireWood > 0 && _player.Wood < choice.RequireWood)
                 {
                     _hud.ShowPopup("Not enough Wood!", "OK", null);
-                    _hud.OnPopupAccept += () => { _captureCompleted = true; };
+                    _hud.OnPopupAccept += OnEventRequirementFailed;
                     return;
                 }
                 if (choice.RequireMetal > 0 && _player.Metal < choice.RequireMetal)
                 {
                     _hud.ShowPopup("Not enough Metal!", "OK", null);
-                    _hud.OnPopupAccept += () => { _captureCompleted = true; };
+                    _hud.OnPopupAccept += OnEventRequirementFailed;
                     return;
                 }
 
@@ -444,6 +471,13 @@ namespace GameStates
                 }
             }
 
+            _captureCompleted = true;
+        }
+
+        private void OnEventRequirementFailed()
+        {
+            _hud.OnPopupAccept -= OnEventRequirementFailed;
+            _hud.HidePopup();
             _captureCompleted = true;
         }
     }
