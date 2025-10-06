@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1033347266242228584, guid: 04ec8b6a64b4db44f96d3d5b3d915dec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5054463225848511305, guid: 04ec8b6a64b4db44f96d3d5b3d915dec, type: 3}
       propertyPath: m_FlipX
       value: 0
@@ -19,7 +23,7 @@ PrefabInstance:
     - target: {fileID: 5054463225848511305, guid: 04ec8b6a64b4db44f96d3d5b3d915dec, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 100b1f42ceeb3e94aa77a5154d62345a, type: 3}
+      objectReference: {fileID: 21300000, guid: e7c5f6d66bc85624894661f95a5eb358, type: 3}
     - target: {fileID: 5347077368956604534, guid: 04ec8b6a64b4db44f96d3d5b3d915dec, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.73526
@@ -60,9 +64,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5430961081082191700, guid: 04ec8b6a64b4db44f96d3d5b3d915dec, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6140079121571957144, guid: 04ec8b6a64b4db44f96d3d5b3d915dec, type: 3}
       propertyPath: m_Name
       value: Enemy Castle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6637497039518014987, guid: 04ec8b6a64b4db44f96d3d5b3d915dec, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 100b1f42ceeb3e94aa77a5154d62345a, type: 3}
+    - target: {fileID: 6637497039518014987, guid: 04ec8b6a64b4db44f96d3d5b3d915dec, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6637497039518014987, guid: 04ec8b6a64b4db44f96d3d5b3d915dec, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6637497039518014987, guid: 04ec8b6a64b4db44f96d3d5b3d915dec, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6843971706156043924, guid: 04ec8b6a64b4db44f96d3d5b3d915dec, type: 3}
       propertyPath: Data
@@ -71,6 +95,22 @@ PrefabInstance:
     - target: {fileID: 6843971706156043924, guid: 04ec8b6a64b4db44f96d3d5b3d915dec, type: 3}
       propertyPath: _tileType
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915337343986521720, guid: 04ec8b6a64b4db44f96d3d5b3d915dec, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.84000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915337343986521720, guid: 04ec8b6a64b4db44f96d3d5b3d915dec, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.84000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915337343986521720, guid: 04ec8b6a64b4db44f96d3d5b3d915dec, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.84000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915337343986521720, guid: 04ec8b6a64b4db44f96d3d5b3d915dec, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.28
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

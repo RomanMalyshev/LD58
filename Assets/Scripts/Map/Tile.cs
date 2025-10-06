@@ -15,12 +15,17 @@ namespace Map
         [SerializeField] private Vector3Int _tilePosition;
         [SerializeField] private TileType _tileType;
 
-        [SerializeField] private Color _normalColor = Color.white;
+        [SerializeField] private Color _normalColor = new (0f, 0f, 0f, 0f);
         [SerializeField] private Color _occupiedColor = Color.red;
         [SerializeField] private Color _hoverColor = Color.yellow;
         [SerializeField] private Color _readyToOccupy = Color.green;
         [SerializeField] private Color _selectedColor = Color.blue;
 
+        [SerializeField] private Color _normalTileColor =  new (0.9f, 0.9f, 0.9f, 1f);
+        [SerializeField]private float _normalTileAlpha = 0.8f;
+        [SerializeField]private float _accentTileAlpha = 1f;
+        [SerializeField]private SpriteRenderer[] _tileSprites;
+        
         [SerializeField] private MouseTrigger _mouseTrigger;
         [SerializeField] private SpriteRenderer _spriteRenderer;
 
@@ -43,6 +48,16 @@ namespace Map
             _mouseTrigger.OnClicked += OnMouseDown;
             _mouseTrigger.OnHoverEnter += OnMouseEnter;
             _mouseTrigger.OnHoverExit += OnMouseExit;
+            SetTileColor(_normalTileColor);
+
+        }
+
+        private void SetTileColor(Color color)
+        {
+            foreach (var spriteRenderer in _tileSprites)
+            {
+                spriteRenderer.color = color;
+            }
         }
 
         public void SetPosition(Vector3Int tilePos)
@@ -115,10 +130,13 @@ namespace Map
         {
             if (_isHovered)
             {
+                
+                SetTileColor(Color.white);
                 _spriteRenderer.color = _hoverColor;
             }
             else if (_isSelected)
             {
+                SetTileColor(Color.white);
                 _spriteRenderer.color = _selectedColor;
             }
             else if (_isOccupied)
@@ -131,6 +149,7 @@ namespace Map
             }
             else
             {
+                SetTileColor(_normalTileColor);
                 _spriteRenderer.color = _normalColor;
             }
         }

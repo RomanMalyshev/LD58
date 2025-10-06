@@ -11068,7 +11068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraEffectsController
   volume: {fileID: 1747189410}
-  vignetteIntensity: 0.318
+  vignetteIntensity: 0.35
   colorFilter: {r: 0.9622642, g: 0.88906217, b: 0.5582948, a: 1}
   colorFilterIntensity: 0.045
 --- !u!1001 &2085362308
@@ -11644,7 +11644,11 @@ PrefabInstance:
       objectReference: {fileID: 2083739877}
     - target: {fileID: 6682757918193300956, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
       propertyPath: m_PlaneDistance
-      value: 0
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682757918193300956, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
+      propertyPath: m_VertexColorAlwaysGammaSpace
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6782060616822711725, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
       propertyPath: m_Name
