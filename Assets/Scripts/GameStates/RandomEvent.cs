@@ -88,7 +88,7 @@ namespace GameStates
 
         private void HandlePassiveEvent()
         {
-            string message = $"{_currentEvent.EventName}\n\n{_currentEvent.EventDescription}";
+            string message = $"{_currentEvent.EventName}\n{_currentEvent.EventDescription}";
             
             if (_currentEvent.PassiveEffect != null)
             {
@@ -101,7 +101,7 @@ namespace GameStates
 
         private void ShowEventChoices()
         {
-            string message = $"{_currentEvent.EventName}\n\n{_currentEvent.EventDescription}";
+            string message = $"{_currentEvent.EventName}\n{_currentEvent.EventDescription}";
             
             string acceptLabel = _currentEvent.Choices[0] != null ? _currentEvent.Choices[0].ChoiceText : "Accept";
             string declineLabel = _currentEvent.Choices[1] != null ? _currentEvent.Choices[1].ChoiceText : "Decline";
