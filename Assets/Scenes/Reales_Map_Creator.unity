@@ -4980,7 +4980,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061429757}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.9}
+  m_LocalPosition: {x: 0, y: 0, z: 113.98}
   m_LocalScale: {x: 33.91, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5924,6 +5924,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 2083739877}
+    - target: {fileID: 6682757918193300956, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
+      propertyPath: m_PlaneDistance
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6690228441909514707, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

@@ -225,7 +225,7 @@ Material:
     - _WarpSpeed: 8
     - _WarpStrength: 0.025
     - _WaveAmount: 12.2
-    - _WaveSpeed: 7.4
+    - _WaveSpeed: 2.8
     - _WaveStrength: 6.4
     - _WaveX: 1
     - _WaveY: 0.122
