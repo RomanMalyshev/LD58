@@ -16,6 +16,7 @@ namespace Events
         public int RequireGold = 0;
         public int RequireWood = 0;
         public int RequireMetal = 0;
+        public int RequireFood = 0;
 
         [Header("Effects")]
         public EventEffect Effect = new EventEffect();

@@ -236,7 +236,7 @@ namespace GameStates
             if (!CanAffordTile(_selectedTile))
             {
                 _hud.ShowPopup("Not enough resources!", "OK", null);
-                _hud.OnPopupAccept += () => { _selectedTile = null; };
+                _hud.OnPopupAccept += OnCancelCapture;
                 return;
             }
 
@@ -247,7 +247,7 @@ namespace GameStates
         {
             if (!_waitingForConfirmation) return;
             _waitingForConfirmation = false;
-
+            
             _hud.OnPopupAccept -= OnConfirmCapture;
             _hud.OnPopupDecline -= OnCancelCapture;
             _hud.HidePopup();
@@ -415,6 +415,7 @@ namespace GameStates
                 _player.Gold -= choice.RequireGold;
                 _player.Wood -= choice.RequireWood;
                 _player.Metal -= choice.RequireMetal;
+                _player.Food -= choice.RequireFood;
 
                 // Handle battle
                 if (choice.IsBattle)

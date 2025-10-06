@@ -179,6 +179,7 @@ namespace GameStates
             _player.Gold -= choice.RequireGold;
             _player.Wood -= choice.RequireWood;
             _player.Metal -= choice.RequireMetal;
+            _player.Food -= choice.RequireFood;
 
             // Handle battle
             if (choice.IsBattle)
