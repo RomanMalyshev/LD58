@@ -116,8 +116,8 @@ Transform:
   m_GameObject: {fileID: 1033347266242228584}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 1.31, z: 0}
-  m_LocalScale: {x: 1.1138538, y: 1.0097835, z: 1}
+  m_LocalPosition: {x: -0.006, y: 1.306, z: 0}
+  m_LocalScale: {x: 1.06, y: 0.94, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6415436199107300822}
@@ -170,8 +170,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 3287946328590563128, guid: 5d37f3ef474363e4faab5b0b87c3c714, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -2944434533021587351, guid: 6a0be50e83041d94aac74cac40dd7b04, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.65882355}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -704,11 +704,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::View.Map.TileView
   _tilePosition: {x: 0, y: 0, z: 0}
   _tileType: 0
-  _normalColor: {r: 1, g: 1, b: 1, a: 1}
-  _occupiedColor: {r: 1, g: 0, b: 0, a: 1}
-  _hoverColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  _readyToOccupy: {r: 0, g: 1, b: 0, a: 1}
-  _selectedColor: {r: 0, g: 0, b: 1, a: 1}
+  _normalColor: {r: 1, g: 1, b: 1, a: 0}
+  _occupiedColor: {r: 0, g: 1, b: 0, a: 0.627451}
+  _hoverColor: {r: 0.17254902, g: 0.73333335, b: 0.94509804, a: 0.7137255}
+  _readyToOccupy: {r: 1, g: 0.94664407, b: 0.014824748, a: 0.627451}
+  _selectedColor: {r: 0.004042983, g: 0.4548098, b: 1, a: 0.7137255}
   _normalTileColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
   _normalTileAlpha: 0.8
   _accentTileAlpha: 1

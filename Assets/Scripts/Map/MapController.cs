@@ -163,10 +163,10 @@ namespace Map
             // Reset upgrade levels and state for all tiles
             foreach (var tile in _coordToTiles.Values)
             {
-                tile.SetOccupiedVisual(false);
-                tile.SetReadyToOccupyVisual(false);
                 tile.IsOccupied = false;
                 tile.IsReadyToOccupy = false;
+                tile.SetOccupiedVisual(false);
+                tile.SetReadyToOccupyVisual(false);
                 tile.ResetUpgradeLevel();
             }
             

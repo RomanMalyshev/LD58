@@ -15,18 +15,18 @@ namespace Map
         [SerializeField] private Vector3Int _tilePosition;
         [SerializeField] private TileType _tileType;
 
-        [SerializeField] private Color _normalColor = new (0f, 0f, 0f, 0f);
+        [SerializeField] private Color _normalColor = new(0f, 0f, 0f, 0f);
         [SerializeField] private Color _occupiedColor = Color.red;
         [SerializeField] private Color _hoverColor = Color.yellow;
         [SerializeField] private Color _readyToOccupy = Color.green;
         [SerializeField] private Color _selectedColor = Color.blue;
 
-        [SerializeField] private Color _normalTileColor =  new (0.9f, 0.9f, 0.9f, 0.85f);
-        [SerializeField]private float _normalTileAlpha = 0.8f;
-        [SerializeField]private float _accentTileAlpha = 1f;
-        [SerializeField]private SpriteRenderer[] _tileSprites;
-        [SerializeField]private SpriteRenderer[] _spritesForReorder;
-        
+        [SerializeField] private Color _normalTileColor = new(0.8f, 0.8f, 0.8f, 0.85f);
+        [SerializeField] private float _normalTileAlpha = 0.8f;
+        [SerializeField] private float _accentTileAlpha = 1f;
+        [SerializeField] private SpriteRenderer[] _tileSprites;
+        [SerializeField] private SpriteRenderer[] _spritesForReorder;
+
         [SerializeField] private MouseTrigger _mouseTrigger;
         [SerializeField] private SpriteRenderer _spriteRenderer;
 
@@ -49,7 +49,7 @@ namespace Map
             _mouseTrigger.OnHoverEnter += OnMouseEnter;
             _mouseTrigger.OnHoverExit += OnMouseExit;
             SetTileColor(_normalTileColor);
-
+            UpdateVisual();
         }
 
         private void SetTileColor(Color color)
@@ -75,7 +75,7 @@ namespace Map
             for (var i = 0; i < _spritesForReorder.Length; i++)
             {
                 var spriteRenderer = _spritesForReorder[i];
-                spriteRenderer.sortingOrder = yCount - _tilePosition.y -i-4;
+                spriteRenderer.sortingOrder = yCount - _tilePosition.y - i - 4;
             }
         }
 
@@ -134,7 +134,6 @@ namespace Map
         {
             if (_isHovered)
             {
-                
                 SetTileColor(Color.white);
                 _spriteRenderer.color = _hoverColor;
             }
@@ -156,6 +155,9 @@ namespace Map
                 SetTileColor(_normalTileColor);
                 _spriteRenderer.color = _normalColor;
             }
+
+
+            Debug.Log(_spriteRenderer.color);
         }
 
         public void SetReadyToOccupy(bool isReady)
