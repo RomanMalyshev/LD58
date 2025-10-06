@@ -165,7 +165,7 @@ MonoBehaviour:
     IncomeWood: 0
     IncomeGold: 0
     IncomeMetal: 0
-    CanBeUpgraded: 1
+    CanBeUpgraded: 0
     UpgradeWoodCost: 0
     UpgradeGoldCost: 0
     UpgradeMetalCost: 6
