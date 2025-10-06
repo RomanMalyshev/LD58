@@ -6,6 +6,7 @@ namespace Model
     {
         public event Action<int, int, int, int, int, int> OnResourcesChanged;
         public event Action<int, int> OnGameStatsChanged; // (currentTurn, capturedCastles)
+        public event Action OnIncomeChanged; // Triggered when income needs to be recalculated
 
         private int _influence;
         private int _power;
@@ -111,6 +112,7 @@ namespace Model
         private void NotifyResourcesChanged()
         {
             OnResourcesChanged?.Invoke(_influence, _power, _food, _gold, _metal, _wood);
+            OnIncomeChanged?.Invoke(); // Income may change when resources change
         }
 
         private void NotifyGameStatsChanged()
@@ -134,6 +136,11 @@ namespace Model
             
             NotifyResourcesChanged();
             NotifyGameStatsChanged();
+        }
+
+        public void TriggerIncomeUpdate()
+        {
+            OnIncomeChanged?.Invoke();
         }
     }
 }

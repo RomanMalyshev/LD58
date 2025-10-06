@@ -20,6 +20,14 @@ namespace UI
         [SerializeField] private TMP_Text CurrentTurn;
         [SerializeField] private TMP_Text CapturedCastles;
 
+        [Header("Income Display")] [SerializeField]
+        private TMP_Text IncomeFood;
+
+        [SerializeField] private TMP_Text IncomePower;
+        [SerializeField] private TMP_Text IncomeWood;
+        [SerializeField] private TMP_Text IncomeGold;
+        [SerializeField] private TMP_Text IncomeMetal;
+
         [SerializeField] private GameObject Popup;
         [SerializeField] private TMP_Text PopupMessage;
         [SerializeField] private TMP_Text PopupAcceptLabel;
@@ -65,7 +73,7 @@ namespace UI
             PopupMessage.text = message;
             PopupAcceptLabel.text = accept;
             PopupDeclineLabel.text = decline;
-            
+
             OnMassageChange?.Invoke();
         }
 
@@ -89,6 +97,33 @@ namespace UI
             {
                 TileInfoPanel.SetActive(false);
             }
+        }
+
+        public void UpdateIncome(int foodIncome, int powerIncome, int woodIncome, int goldIncome, int metalIncome,
+            int foodConsumption)
+        {
+            int netFoodIncome = foodIncome - foodConsumption;
+
+            IncomeFood.gameObject.SetActive(netFoodIncome != 0);
+            IncomePower.gameObject.SetActive(powerIncome != 0);
+            IncomeWood.gameObject.SetActive(woodIncome != 0);
+            IncomeGold.gameObject.SetActive(goldIncome != 0);
+            IncomeMetal.gameObject.SetActive(metalIncome != 0);
+            IncomeFood.text = FormatIncome(netFoodIncome);
+            IncomePower.text = FormatIncome(powerIncome);
+            IncomeWood.text = FormatIncome(woodIncome);
+            IncomeGold.text = FormatIncome(goldIncome);
+            IncomeMetal.text = FormatIncome(metalIncome);
+        }
+
+        private string FormatIncome(int income)
+        {
+            if (income > 0)
+                return $"+{income}";
+            else if (income < 0)
+                return $"{income}";
+            else
+                return "0";
         }
     }
 }

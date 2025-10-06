@@ -305,6 +305,9 @@ namespace GameStates
                 _player.CapturedCastles++;
             }
 
+            // Update income after capturing new tile
+            _player.TriggerIncomeUpdate();
+
             // Handle special tile events
             HandleTileEvents(tile);
         }

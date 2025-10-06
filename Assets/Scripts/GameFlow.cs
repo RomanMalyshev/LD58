@@ -32,17 +32,23 @@ public class GameFlow : MonoBehaviour
     private EventManager _eventManager;
     private void Start()
     {
+        InitializeMap();
         InitializePlayer();
+        InitializeStateMachine();
+        
+        // Update income on game start
+        _playerModel.TriggerIncomeUpdate();
+        _stateMachine.ChangeState(_enterGame);
+    }
 
+    private void InitializeMap()
+    {
         _map = new(_mapEditorSettings, _mapEditorView, _tilesConfig);
         if (_map.MaxRadius > 5)
         {
             _map.HideAtRadius(_map.MaxRadius-1);
             _map.HideAtRadius(_map.MaxRadius-2);
         }
-
-        InitializeStateMachine();
-        _stateMachine.ChangeState(_enterGame);
     }
 
     private void InitializePlayer()
@@ -50,6 +56,7 @@ public class GameFlow : MonoBehaviour
         _playerModel = new Player();
         _playerModel.OnResourcesChanged += _hud.UpdateResources;
         _playerModel.OnGameStatsChanged += _hud.UpdateGameStats;
+        _playerModel.OnIncomeChanged += UpdateIncome;
         
         _playerModel.Influence = _playerStartConfig.Influence;
         _playerModel.Power = _playerStartConfig.Power;
@@ -141,13 +148,26 @@ public class GameFlow : MonoBehaviour
         // Reset map to initial state
         _map.ResetMap();
 
+        // Update income after reset
+        _playerModel.TriggerIncomeUpdate();
+
         // Change state to enter game
         _stateMachine.ChangeState(_enterGame);
+    }
+
+    private void UpdateIncome()
+    {
+        var occupiedTiles = _map.GetOccupiedTiles();
+        var income = ResourceCalculator.CalculateTotalIncome(occupiedTiles);
+        int foodConsumption = ResourceCalculator.CalculateFoodConsumption(_playerModel.Power);
+        
+        _hud.UpdateIncome(income.Food, income.Power, income.Wood, income.Gold, income.Metal, foodConsumption);
     }
 
     private void OnDestroy()
     {
         _playerModel.OnResourcesChanged -= _hud.UpdateResources;
         _playerModel.OnGameStatsChanged -= _hud.UpdateGameStats;
+        _playerModel.OnIncomeChanged -= UpdateIncome;
     }
 }

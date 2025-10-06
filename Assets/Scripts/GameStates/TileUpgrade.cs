@@ -289,6 +289,9 @@ namespace GameStates
             // Upgrade tile
             tile.UpgradeTile();
 
+            // Update income after upgrade
+            _player.TriggerIncomeUpdate();
+
             string message = $"{config.DisplayName} upgraded to Level {tile.UpgradeLevel}!";
             _hud.ShowPopup(message, "OK", null);
             _hud.OnPopupAccept += () => { _upgradeCompleted = true; };
