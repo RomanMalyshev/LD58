@@ -135,7 +135,7 @@ namespace GameStates
             if (_waitingForConfirmation || _captureCompleted) return;
             if (tile.Config == null) return;
 
-            string info = $"{tile.Config.DisplayName}\n\n";
+            string info = $"{tile.Config.DisplayName}\n";
             info += $"Cost: {tile.Config.InfluenceCost} <Sprite index=0>";
             if (tile.Config.PowerCost > 0) info += $", {tile.Config.PowerCost} <Sprite index=5>";
             if (tile.Config.WoodCost > 0) info += $", {tile.Config.WoodCost} <Sprite index=1>";
@@ -149,13 +149,13 @@ namespace GameStates
 
             if (hasRewards)
             {
-                info += "\n\nImmediate Rewards:\n";
-                if (tile.Config.RewardInfluence != 0) info += $"<Sprite index=0> {tile.Config.RewardInfluence:+0;-0}\n";
-                if (tile.Config.RewardPower != 0) info += $"<Sprite index=5> {tile.Config.RewardPower:+0;-0}\n";
-                if (tile.Config.RewardFood != 0) info += $"<Sprite index=2> {tile.Config.RewardFood:+0;-0}\n";
-                if (tile.Config.RewardWood != 0) info += $"<Sprite index=1> {tile.Config.RewardWood:+0;-0}\n";
-                if (tile.Config.RewardGold != 0) info += $"<Sprite index=3> {tile.Config.RewardGold:+0;-0}\n";
-                if (tile.Config.RewardMetal != 0) info += $"<Sprite index=4> {tile.Config.RewardMetal:+0;-0}\n";
+                info += "\nRewards:\n";
+                if (tile.Config.RewardInfluence != 0) info += $"<Sprite index=0> {tile.Config.RewardInfluence:+0;-0}";
+                if (tile.Config.RewardPower != 0) info += $"<Sprite index=5> {tile.Config.RewardPower:+0;-0}";
+                if (tile.Config.RewardFood != 0) info += $"<Sprite index=2> {tile.Config.RewardFood:+0;-0}";
+                if (tile.Config.RewardWood != 0) info += $"<Sprite index=1> {tile.Config.RewardWood:+0;-0}";
+                if (tile.Config.RewardGold != 0) info += $"<Sprite index=3> {tile.Config.RewardGold:+0;-0}";
+                if (tile.Config.RewardMetal != 0) info += $"<Sprite index=4> {tile.Config.RewardMetal:+0;-0}";
             }
 
             // Passive income
@@ -165,12 +165,12 @@ namespace GameStates
 
             if (hasIncome)
             {
-                info += "\n\nIncome per Turn:\n";
-                if (tile.Config.IncomeFood != 0) info += $"<Sprite index=2> {tile.Config.IncomeFood:+0;-0}\n";
-                if (tile.Config.IncomePower != 0) info += $"<Sprite index=5> {tile.Config.IncomePower:+0;-0}\n";
-                if (tile.Config.IncomeWood != 0) info += $"<Sprite index=1> {tile.Config.IncomeWood:+0;-0}\n";
-                if (tile.Config.IncomeGold != 0) info += $"<Sprite index=3> {tile.Config.IncomeGold:+0;-0}\n";
-                if (tile.Config.IncomeMetal != 0) info += $"<Sprite index=4> {tile.Config.IncomeMetal:+0;-0}\n";
+                info += "\nPer Turn:\n";
+                if (tile.Config.IncomeFood != 0) info += $"<Sprite index=2> {tile.Config.IncomeFood:+0;-0}";
+                if (tile.Config.IncomePower != 0) info += $"<Sprite index=5> {tile.Config.IncomePower:+0;-0}";
+                if (tile.Config.IncomeWood != 0) info += $"<Sprite index=1> {tile.Config.IncomeWood:+0;-0}";
+                if (tile.Config.IncomeGold != 0) info += $"<Sprite index=3> {tile.Config.IncomeGold:+0;-0}";
+                if (tile.Config.IncomeMetal != 0) info += $"<Sprite index=4> {tile.Config.IncomeMetal:+0;-0}";
             }
 
             _hud.ShowTileInfo(info);
@@ -301,7 +301,7 @@ namespace GameStates
 
             // Pay costs
             _player.Influence -= config.InfluenceCost;
-            _player.Power -= config.PowerCost;
+            //_player.Power -= config.PowerCost; you can't spend power
             _player.Wood -= config.WoodCost;
             _player.Gold -= config.GoldCost;
             _player.Metal -= config.MetalCost;
