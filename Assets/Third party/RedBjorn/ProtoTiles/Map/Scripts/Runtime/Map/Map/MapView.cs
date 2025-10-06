@@ -26,12 +26,12 @@ namespace RedBjorn.ProtoTiles
         }
 
         [ContextMenu("Set Order Layer")]
-        public void Reset()
+        public void ResetLayerOrder()
         {
             var tiles = GetComponentsInChildren<Tile>();
             foreach (var tileView in tiles)
             {
-                tileView.UpdateOrderLayer(20  );
+                tileView.UpdateOrderLayer(60 );
             }
         }
 

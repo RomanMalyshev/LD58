@@ -21,10 +21,11 @@ namespace Map
         [SerializeField] private Color _readyToOccupy = Color.green;
         [SerializeField] private Color _selectedColor = Color.blue;
 
-        [SerializeField] private Color _normalTileColor =  new (0.9f, 0.9f, 0.9f, 1f);
+        [SerializeField] private Color _normalTileColor =  new (0.9f, 0.9f, 0.9f, 0.85f);
         [SerializeField]private float _normalTileAlpha = 0.8f;
         [SerializeField]private float _accentTileAlpha = 1f;
         [SerializeField]private SpriteRenderer[] _tileSprites;
+        [SerializeField]private SpriteRenderer[] _spritesForReorder;
         
         [SerializeField] private MouseTrigger _mouseTrigger;
         [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -72,7 +73,11 @@ namespace Map
 
         public void UpdateOrderLayer(int yCount)
         {
-            _spriteRenderer.sortingOrder = yCount - _tilePosition.y;
+            for (var i = 0; i < _spritesForReorder.Length; i++)
+            {
+                var spriteRenderer = _spritesForReorder[i];
+                spriteRenderer.sortingOrder = yCount - _tilePosition.y -i-4;
+            }
         }
 
         public void OnMouseEnter()
@@ -207,6 +212,11 @@ namespace Map
         {
             _isSelected = isSelected;
             UpdateVisual();
+        }
+
+        public void ResetUpgradeLevel()
+        {
+            _upgradeLevel = 0;
         }
     }
 }
