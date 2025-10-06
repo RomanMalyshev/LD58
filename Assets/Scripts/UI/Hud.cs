@@ -10,6 +10,8 @@ namespace UI
         public Action OnPopupDecline;
         public Action OnPopupAccept;
 
+        [SerializeField] private CanvasGroup _canvasGroup;
+        
         [SerializeField] private TMP_Text Influence;
         [SerializeField] private TMP_Text Power;
         [SerializeField] private TMP_Text Food;
