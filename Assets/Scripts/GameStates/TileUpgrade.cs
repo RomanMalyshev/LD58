@@ -131,23 +131,23 @@ namespace GameStates
             info += "Upgrade Cost:\n";
             
             if (tile.Config.UpgradeWoodCost > 0) 
-                info += $"Wood: {tile.Config.UpgradeWoodCost}\n";
+                info += $"<Sprite index=1> {tile.Config.UpgradeWoodCost}\n";
             if (tile.Config.UpgradeGoldCost > 0) 
-                info += $"Gold: {tile.Config.UpgradeGoldCost}\n";
+                info += $"<Sprite index=3> {tile.Config.UpgradeGoldCost}\n";
             if (tile.Config.UpgradeMetalCost > 0) 
-                info += $"Metal: {tile.Config.UpgradeMetalCost}\n";
+                info += $"<Sprite index=4> {tile.Config.UpgradeMetalCost}\n";
 
             info += "\nUpgrade Bonus:\n";
             if (tile.Config.UpgradeFoodBonus > 0) 
-                info += $"Food: +{tile.Config.UpgradeFoodBonus}\n";
+                info += $"<Sprite index=2> +{tile.Config.UpgradeFoodBonus}\n";
             if (tile.Config.UpgradePowerBonus > 0) 
-                info += $"Power: +{tile.Config.UpgradePowerBonus}\n";
+                info += $"<Sprite index=5> +{tile.Config.UpgradePowerBonus}\n";
             if (tile.Config.UpgradeWoodBonus > 0) 
-                info += $"Wood: +{tile.Config.UpgradeWoodBonus}\n";
+                info += $"<Sprite index=1> +{tile.Config.UpgradeWoodBonus}\n";
             if (tile.Config.UpgradeGoldBonus > 0) 
-                info += $"Gold: +{tile.Config.UpgradeGoldBonus}\n";
+                info += $"<Sprite index=3> +{tile.Config.UpgradeGoldBonus}\n";
             if (tile.Config.UpgradeMetalBonus > 0) 
-                info += $"Metal: +{tile.Config.UpgradeMetalBonus}\n";
+                info += $"<Sprite index=4> +{tile.Config.UpgradeMetalBonus}\n";
 
             _hud.ShowTileInfo(info);
         }
@@ -168,32 +168,32 @@ namespace GameStates
             bool hasCost = false;
             if (config.UpgradeWoodCost > 0) 
             {
-                message += $"{config.UpgradeWoodCost} Wood";
+                message += $"{config.UpgradeWoodCost} <Sprite index=1>";
                 hasCost = true;
             }
             if (config.UpgradeGoldCost > 0) 
             {
                 if (hasCost) message += ", ";
-                message += $"{config.UpgradeGoldCost} Gold";
+                message += $"{config.UpgradeGoldCost} <Sprite index=3>";
                 hasCost = true;
             }
             if (config.UpgradeMetalCost > 0) 
             {
                 if (hasCost) message += ", ";
-                message += $"{config.UpgradeMetalCost} Metal";
+                message += $"{config.UpgradeMetalCost} <Sprite index=4>";
             }
 
             message += "\n\nBonus per turn:\n";
             if (config.UpgradeFoodBonus > 0) 
-                message += $"+{config.UpgradeFoodBonus} Food\n";
+                message += $"<Sprite index=2> +{config.UpgradeFoodBonus}\n";
             if (config.UpgradePowerBonus > 0) 
-                message += $"+{config.UpgradePowerBonus} Power\n";
+                message += $"<Sprite index=5> +{config.UpgradePowerBonus}\n";
             if (config.UpgradeWoodBonus > 0) 
-                message += $"+{config.UpgradeWoodBonus} Wood\n";
+                message += $"<Sprite index=1> +{config.UpgradeWoodBonus}\n";
             if (config.UpgradeGoldBonus > 0) 
-                message += $"+{config.UpgradeGoldBonus} Gold\n";
+                message += $"<Sprite index=3> +{config.UpgradeGoldBonus}\n";
             if (config.UpgradeMetalBonus > 0) 
-                message += $"+{config.UpgradeMetalBonus} Metal\n";
+                message += $"<Sprite index=4> +{config.UpgradeMetalBonus}\n";
 
             // Скрываем начальный popup
             _hud.HidePopup();

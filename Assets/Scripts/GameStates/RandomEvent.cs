@@ -74,6 +74,42 @@ namespace GameStates
                 return;
             }
 
+            if (_currentEvent.RequireFood > _player.Food)
+            {
+                _eventCompleted = true;
+                return;
+            }
+
+            if (_currentEvent.RequireGold > _player.Gold)
+            {
+                _eventCompleted = true;
+                return;
+            }
+
+            if (_currentEvent.RequireInfluence > _player.Influence)
+            {
+                _eventCompleted = true;
+                return;
+            }
+
+            if (_currentEvent.RequireMetal > _player.Metal)
+            {
+                _eventCompleted = true;
+                return;
+            }
+
+            if (_currentEvent.RequireWood > _player.Wood)
+            {
+                _eventCompleted = true;
+                return;
+            }
+
+            if (_currentEvent.RequirePower > _player.Power)
+            {
+                _eventCompleted = true;
+                return;
+            }
+
             if (occupiedTiles.All(it => it.TileType != _currentEvent.RequiredTileType))
             {
                 _eventCompleted = true;

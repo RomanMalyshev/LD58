@@ -136,41 +136,41 @@ namespace GameStates
             if (tile.Config == null) return;
 
             string info = $"{tile.Config.DisplayName}\n\n";
-            info += $"Cost: {tile.Config.InfluenceCost} Influence";
-            if (tile.Config.PowerCost > 0) info += $", {tile.Config.PowerCost} Power";
-            if (tile.Config.WoodCost > 0) info += $", {tile.Config.WoodCost} Wood";
-            if (tile.Config.GoldCost > 0) info += $", {tile.Config.GoldCost} Gold";
-            if (tile.Config.MetalCost > 0) info += $", {tile.Config.MetalCost} Metal";
+            info += $"Cost: {tile.Config.InfluenceCost} <Sprite index=0>";
+            if (tile.Config.PowerCost > 0) info += $", {tile.Config.PowerCost} <Sprite index=5>";
+            if (tile.Config.WoodCost > 0) info += $", {tile.Config.WoodCost} <Sprite index=1>";
+            if (tile.Config.GoldCost > 0) info += $", {tile.Config.GoldCost} <Sprite index=3>";
+            if (tile.Config.MetalCost > 0) info += $", {tile.Config.MetalCost} <Sprite index=4>";
 
             // Immediate rewards
             bool hasRewards = tile.Config.RewardInfluence != 0 || tile.Config.RewardPower != 0 || 
                               tile.Config.RewardFood != 0 || tile.Config.RewardWood != 0 || 
                               tile.Config.RewardGold != 0 || tile.Config.RewardMetal != 0;
-            
+
             if (hasRewards)
             {
                 info += "\n\nImmediate Rewards:\n";
-                if (tile.Config.RewardInfluence != 0) info += $"Influence: {tile.Config.RewardInfluence:+0;-0}\n";
-                if (tile.Config.RewardPower != 0) info += $"Power: {tile.Config.RewardPower:+0;-0}\n";
-                if (tile.Config.RewardFood != 0) info += $"Food: {tile.Config.RewardFood:+0;-0}\n";
-                if (tile.Config.RewardWood != 0) info += $"Wood: {tile.Config.RewardWood:+0;-0}\n";
-                if (tile.Config.RewardGold != 0) info += $"Gold: {tile.Config.RewardGold:+0;-0}\n";
-                if (tile.Config.RewardMetal != 0) info += $"Metal: {tile.Config.RewardMetal:+0;-0}\n";
+                if (tile.Config.RewardInfluence != 0) info += $"<Sprite index=0> {tile.Config.RewardInfluence:+0;-0}\n";
+                if (tile.Config.RewardPower != 0) info += $"<Sprite index=5> {tile.Config.RewardPower:+0;-0}\n";
+                if (tile.Config.RewardFood != 0) info += $"<Sprite index=2> {tile.Config.RewardFood:+0;-0}\n";
+                if (tile.Config.RewardWood != 0) info += $"<Sprite index=1> {tile.Config.RewardWood:+0;-0}\n";
+                if (tile.Config.RewardGold != 0) info += $"<Sprite index=3> {tile.Config.RewardGold:+0;-0}\n";
+                if (tile.Config.RewardMetal != 0) info += $"<Sprite index=4> {tile.Config.RewardMetal:+0;-0}\n";
             }
 
             // Passive income
             bool hasIncome = tile.Config.IncomeFood != 0 || tile.Config.IncomePower != 0 || 
                              tile.Config.IncomeWood != 0 || tile.Config.IncomeGold != 0 || 
                              tile.Config.IncomeMetal != 0;
-            
+
             if (hasIncome)
             {
                 info += "\n\nIncome per Turn:\n";
-                if (tile.Config.IncomeFood != 0) info += $"Food: {tile.Config.IncomeFood:+0;-0}\n";
-                if (tile.Config.IncomePower != 0) info += $"Power: {tile.Config.IncomePower:+0;-0}\n";
-                if (tile.Config.IncomeWood != 0) info += $"Wood: {tile.Config.IncomeWood:+0;-0}\n";
-                if (tile.Config.IncomeGold != 0) info += $"Gold: {tile.Config.IncomeGold:+0;-0}\n";
-                if (tile.Config.IncomeMetal != 0) info += $"Metal: {tile.Config.IncomeMetal:+0;-0}\n";
+                if (tile.Config.IncomeFood != 0) info += $"<Sprite index=2> {tile.Config.IncomeFood:+0;-0}\n";
+                if (tile.Config.IncomePower != 0) info += $"<Sprite index=5> {tile.Config.IncomePower:+0;-0}\n";
+                if (tile.Config.IncomeWood != 0) info += $"<Sprite index=1> {tile.Config.IncomeWood:+0;-0}\n";
+                if (tile.Config.IncomeGold != 0) info += $"<Sprite index=3> {tile.Config.IncomeGold:+0;-0}\n";
+                if (tile.Config.IncomeMetal != 0) info += $"<Sprite index=4> {tile.Config.IncomeMetal:+0;-0}\n";
             }
 
             _hud.ShowTileInfo(info);

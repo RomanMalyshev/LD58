@@ -11,6 +11,14 @@ namespace Events
         public string EventName;
         [TextArea(3, 6)]
         public string EventDescription;
+        
+        [Header("Player should be able to have enough resources to rize event")]
+        public int RequirePower = 0;
+        public int RequireGold = 0;
+        public int RequireWood = 0;
+        public int RequireMetal = 0;
+        public int RequireFood = 0;
+        public int RequireInfluence = 0;
 
         [Header("Event Type")]
         public EventType Type = EventType.Global;
