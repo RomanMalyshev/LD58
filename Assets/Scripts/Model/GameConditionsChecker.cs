@@ -2,7 +2,7 @@ namespace Model
 {
     public static class GameConditionsChecker
     {
-        public const int CASTLES_TO_WIN = 1;
+        public const int CASTLES_TO_WIN = 2;
 
         public static GameEndCondition CheckGameConditions(Player player)
         {

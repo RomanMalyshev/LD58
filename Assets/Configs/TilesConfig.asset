@@ -100,10 +100,10 @@ MonoBehaviour:
     IncomeGold: 0
     IncomeMetal: 0
     CanBeUpgraded: 1
-    UpgradeWoodCost: 0
-    UpgradeGoldCost: 1
+    UpgradeWoodCost: 5
+    UpgradeGoldCost: 0
     UpgradeMetalCost: 0
-    UpgradeFoodBonus: 1
+    UpgradeFoodBonus: 2
     UpgradePowerBonus: 0
     UpgradeWoodBonus: 0
     UpgradeGoldBonus: 0
@@ -117,11 +117,11 @@ MonoBehaviour:
     DisplayName: Castle
     Description: collect IT!!
     InfluenceCost: 0
-    PowerCost: 0
+    PowerCost: 6
     WoodCost: 0
     GoldCost: 0
     MetalCost: 0
-    RewardInfluence: 0
+    RewardInfluence: 20
     RewardPower: 0
     RewardFood: 0
     RewardWood: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
     GoldCost: 0
     MetalCost: 0
     RewardInfluence: 0
-    RewardPower: 1
+    RewardPower: 3
     RewardFood: 0
     RewardWood: 0
     RewardGold: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
     CanBeUpgraded: 1
     UpgradeWoodCost: 0
     UpgradeGoldCost: 0
-    UpgradeMetalCost: 1
+    UpgradeMetalCost: 6
     UpgradeFoodBonus: 0
     UpgradePowerBonus: 2
     UpgradeWoodBonus: 0
@@ -264,13 +264,13 @@ MonoBehaviour:
     IncomeWood: 1
     IncomeGold: 0
     IncomeMetal: 0
-    CanBeUpgraded: 0
+    CanBeUpgraded: 1
     UpgradeWoodCost: 0
     UpgradeGoldCost: 0
-    UpgradeMetalCost: 0
+    UpgradeMetalCost: 3
     UpgradeFoodBonus: 0
     UpgradePowerBonus: 0
-    UpgradeWoodBonus: 0
+    UpgradeWoodBonus: 2
     UpgradeGoldBonus: 0
     UpgradeMetalBonus: 0
     CanBeOccupied: 1
@@ -288,7 +288,7 @@ MonoBehaviour:
     MetalCost: 0
     RewardInfluence: 0
     RewardPower: 0
-    RewardFood: 2
+    RewardFood: 0
     RewardWood: 0
     RewardGold: 0
     RewardMetal: 0
@@ -428,16 +428,16 @@ MonoBehaviour:
     IncomePower: 0
     IncomeWood: 0
     IncomeGold: 0
-    IncomeMetal: 2
-    CanBeUpgraded: 0
+    IncomeMetal: 1
+    CanBeUpgraded: 1
     UpgradeWoodCost: 0
-    UpgradeGoldCost: 0
+    UpgradeGoldCost: 5
     UpgradeMetalCost: 0
     UpgradeFoodBonus: 0
     UpgradePowerBonus: 0
     UpgradeWoodBonus: 0
     UpgradeGoldBonus: 0
-    UpgradeMetalBonus: 0
+    UpgradeMetalBonus: 1
     CanBeOccupied: 1
     IsCastle: 0
     TriggersTavernEvent: 0

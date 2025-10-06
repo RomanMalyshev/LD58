@@ -12333,7 +12333,7 @@ GameObject:
   - component: {fileID: 2061429760}
   - component: {fileID: 2061429759}
   m_Layer: 0
-  m_Name: Table]
+  m_Name: 'Table]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12737,8 +12737,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
   m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
+  m_RequiresDepthTextureOption: 1
+  m_RequiresOpaqueTextureOption: 1
   m_CameraType: 0
   m_Cameras: []
   m_RendererIndex: 0
@@ -13659,10 +13659,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5053076178292257950, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4810552791793248003, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
       propertyPath: volume
       value: 0.5
@@ -13670,6 +13666,10 @@ PrefabInstance:
     - target: {fileID: 4876374563591080477, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
       propertyPath: volume
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5053076178292257950, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5127787724819401652, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
       propertyPath: m_AnchorMax.y
