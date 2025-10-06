@@ -443,6 +443,7 @@ namespace GameStates
                 _player.Wood -= choice.RequireWood;
                 _player.Metal -= choice.RequireMetal;
                 _player.Food -= choice.RequireFood;
+                _player.Influence -= choice.RequireInfluence;
 
                 // Handle battle
                 if (choice.IsBattle)
