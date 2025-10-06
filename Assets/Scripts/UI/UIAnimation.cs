@@ -26,7 +26,7 @@ public class UIAnimation : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private Quaternion startRot;
     private float time;
 
-    void Awake()
+    void Start()
     {
         rectTransform = GetComponent<RectTransform>();
         startPos = rectTransform.anchoredPosition;

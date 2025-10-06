@@ -11068,7 +11068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraEffectsController
   volume: {fileID: 1747189410}
-  vignetteIntensity: 0.35
+  vignetteIntensity: 0.172
   colorFilter: {r: 0.9622642, g: 0.88906217, b: 0.5582948, a: 1}
   colorFilterIntensity: 0.045
 --- !u!1001 &2085362308
@@ -11470,26 +11470,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 429550487128884522, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 429550487128884522, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 429550487128884522, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 429550487128884522, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 429550487128884522, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1270072707463578904, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -11638,23 +11618,36 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5053076178292257950, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6038664427971823047, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6682757918193300956, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 2083739877}
     - target: {fileID: 6682757918193300956, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
       propertyPath: m_PlaneDistance
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6682757918193300956, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
-      propertyPath: m_VertexColorAlwaysGammaSpace
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6782060616822711725, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
       propertyPath: m_Name
       value: HudCanvas
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7185804083982959472, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9013901459364553813, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1862233499189961267, guid: d91229c5ebe12ee468569a6d5829b781, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
