@@ -708,6 +708,7 @@ MonoBehaviour:
   _occupiedColor: {r: 0, g: 1, b: 0, a: 0.627451}
   _hoverColor: {r: 0.17254902, g: 0.73333335, b: 0.94509804, a: 0.7137255}
   _readyToOccupy: {r: 1, g: 0.94664407, b: 0.014824748, a: 0.627451}
+  _readyToUpgrade: {r: 0.7337556, g: 0.092563175, b: 0.8274932, a: 0.8117647}
   _selectedColor: {r: 0.004042983, g: 0.4548098, b: 1, a: 0.7137255}
   _normalTileColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
   _normalTileAlpha: 0.8
