@@ -2,6 +2,7 @@
 using State_Machine;
 using UI;
 using Map;
+using Model;
 
 namespace GameStates
 {
@@ -23,7 +24,7 @@ namespace GameStates
             string welcomeMessage = "Welcome, my Lord!\n\n";
             welcomeMessage += "The time has come to expand our kingdom. ";
             welcomeMessage += "We must collect the castles in the surrounding lands.\n\n";
-            welcomeMessage += "Your goal: Capture 5 castles before resources run out.\n";
+            welcomeMessage += $"Your goal: Capture {GameConditionsChecker.CASTLES_TO_WIN} castles before resources run out.\n";
             welcomeMessage += "Good luck!";
             
             _hud.ShowPopup(welcomeMessage, "Begin", null);
